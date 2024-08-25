@@ -1,0 +1,21 @@
+# exclude all files
+*.*
+
+# include only html and json files
+!*.html
+!*.json
+
+# exclude all sub directories
+/.idea
+/.angular
+/ci
+/devConfig
+/gen
+/reports
+/coverage
+/dist
+/node_modules
+package.json
+package-lock.json
+
+.angular

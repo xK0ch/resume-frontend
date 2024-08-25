@@ -1,0 +1,12 @@
+services:
+  frontend:
+    build: .
+    container_name: resume-frontend
+    image: resume-frontend:latest
+    volumes:
+      - /etc/letsencrypt/live/fynn-koch.de/fullchain.pem:/etc/nginx/ssl/fullchain.pem
+      - /etc/letsencrypt/live/fynn-koch.de/privkey.pem:/etc/nginx/ssl/privkey.pem
+    ports:
+      - "80:80"
+      - "443:443"
+    restart: unless-stopped

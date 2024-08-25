@@ -1,0 +1,47 @@
+{
+  "name": "resume-frontend",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "test:watch": "ng test --watch",
+    "postinstall": "ng-openapi-gen --config api/resume-api/config.json",
+    "lint": "eslint src --fix",
+    "stylelint": "stylelint --fix \"src/**/*.scss\"",
+    "format:check": "prettier --check .",
+    "format:write": "prettier --write .",
+    "fix-code-style": "npm run lint && npm run stylelint && npm run format:write"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "18.2.1",
+    "@angular/cdk": "18.2.1",
+    "@angular/common": "18.2.1",
+    "@angular/compiler": "18.2.1",
+    "@angular/core": "18.2.1",
+    "@angular/forms": "18.2.1",
+    "@angular/material": "18.2.1",
+    "@angular/platform-browser": "18.2.1",
+    "@angular/platform-browser-dynamic": "18.2.1",
+    "@angular/router": "18.2.1",
+    "ng-openapi-gen": "0.51.0",
+    "rxjs": "7.8.1",
+    "tslib": "2.3.0",
+    "zone.js": "0.14.10"
+  },
+  "devDependencies": {
+    "@angular-builders/jest": "18.0.0",
+    "@angular-devkit/build-angular": "18.2.1",
+    "@angular/cli": "18.2.1",
+    "@angular/compiler-cli": "18.2.1",
+    "@ewerk/eslint-config": "1.1.0-0",
+    "@types/jest": "29.5.12",
+    "@typescript-eslint/eslint-plugin": "5.38.1",
+    "eslint": "8.26.0",
+    "jest": "29.7.0",
+    "typescript": "5.5.4"
+  }
+}

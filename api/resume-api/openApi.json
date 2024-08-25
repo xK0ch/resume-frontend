@@ -1,0 +1,603 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "OpenAPI definition",
+    "version": "v0"
+  },
+  "servers": [
+    {
+      "url": "http://fynn-koch.de:8080",
+      "description": "Generated server url"
+    }
+  ],
+  "paths": {
+    "/resumes/{resumeId}": {
+      "get": {
+        "tags": ["Resumes"],
+        "summary": "Get a resume",
+        "operationId": "getOne",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": ["Resumes"],
+        "summary": "Update a resume",
+        "operationId": "update",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeUpdateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Resumes"],
+        "summary": "Delete a resume",
+        "operationId": "delete",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Resumes"],
+        "summary": "Toggles the status of a resume from ACTIVE to INACTIVE and the other way around. Only one resume can be active at a time",
+        "operationId": "toggleStatus",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resumes/{resumeId}/skills/{skillId}": {
+      "put": {
+        "tags": ["Skills"],
+        "summary": "Update a skill of a resume",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillUpdateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillView"
+                }
+              }
+            }
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Skills"],
+        "summary": "Delete a skill of a resume",
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "skillId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "No Content"
+          }
+        }
+      }
+    },
+    "/resumes": {
+      "get": {
+        "tags": ["Resumes"],
+        "summary": "Get all resumes",
+        "operationId": "getAll",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/ResumeView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Resumes"],
+        "summary": "Create a resume",
+        "operationId": "create",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResumeCreateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/resumes/{resumeId}/skills": {
+      "get": {
+        "tags": ["Skills"],
+        "summary": "Get all skills of a resume",
+        "operationId": "getAllByResume",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SkillView"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": ["Skills"],
+        "summary": "Create a skill for a resume",
+        "operationId": "create_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SkillCreateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillView"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "ResumeUpdateOrder": {
+        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "lastName", "postalCode", "sex"],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string",
+            "enum": ["FEMALE", "DIVERSE", "MALE"]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "address": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "mobileNumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "linkedin": {
+            "type": "string"
+          },
+          "github": {
+            "type": "string"
+          }
+        }
+      },
+      "ResumeView": {
+        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "id", "lastName", "postalCode", "sex", "status"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the entity",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "firstName": {
+            "type": "string",
+            "description": "First name of the resumes creator"
+          },
+          "lastName": {
+            "type": "string",
+            "description": "Last name of the resumes creator"
+          },
+          "sex": {
+            "type": "string",
+            "description": "Sex of the resumes creator",
+            "enum": ["FEMALE", "DIVERSE", "MALE", "FEMALE", "DIVERSE", "MALE"]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "description": "Date of birth of the resumes creator",
+            "format": "date"
+          },
+          "address": {
+            "type": "string",
+            "description": "Address of the resumes creator including street and house number",
+            "example": "Main Street 1"
+          },
+          "postalCode": {
+            "type": "string",
+            "description": "Postal code of the city"
+          },
+          "city": {
+            "type": "string",
+            "description": "City where the resumes creator lives"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country where the resumes creator lives"
+          },
+          "phoneNumber": {
+            "type": "string",
+            "description": "Phone number of the resumes creator"
+          },
+          "mobileNumber": {
+            "type": "string",
+            "description": "Mobile number of the resumes creator"
+          },
+          "email": {
+            "type": "string",
+            "description": "Email address of the resumes creator"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the resumes creators skills, interests and experiences"
+          },
+          "linkedin": {
+            "type": "string",
+            "description": "LinkedIn profile URL of the resumes creator"
+          },
+          "github": {
+            "type": "string",
+            "description": "GitHub profile URL of the resumes creator"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the resume",
+            "enum": ["ACTIVE", "INACTIVE", "ACTIVE", "INACTIVE"]
+          }
+        }
+      },
+      "SkillUpdateOrder": {
+        "required": ["name", "skillLevel"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "skillLevel": {
+            "type": "string",
+            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+          }
+        }
+      },
+      "SkillView": {
+        "required": ["id", "name", "skillLevel"],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the entity",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the skill"
+          },
+          "skillLevel": {
+            "type": "string",
+            "description": "Level of the skill",
+            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT", "FEMALE", "DIVERSE", "MALE"]
+          }
+        }
+      },
+      "ResumeCreateOrder": {
+        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "lastName", "postalCode", "sex"],
+        "type": "object",
+        "properties": {
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "sex": {
+            "type": "string",
+            "enum": ["FEMALE", "DIVERSE", "MALE"]
+          },
+          "dateOfBirth": {
+            "type": "string",
+            "format": "date"
+          },
+          "address": {
+            "type": "string"
+          },
+          "postalCode": {
+            "type": "string"
+          },
+          "city": {
+            "type": "string"
+          },
+          "country": {
+            "type": "string"
+          },
+          "phoneNumber": {
+            "type": "string"
+          },
+          "mobileNumber": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "linkedin": {
+            "type": "string"
+          },
+          "github": {
+            "type": "string"
+          }
+        }
+      },
+      "SkillCreateOrder": {
+        "required": ["name", "skillLevel"],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "skillLevel": {
+            "type": "string",
+            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+          }
+        }
+      }
+    }
+  }
+}
