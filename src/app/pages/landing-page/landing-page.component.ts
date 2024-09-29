@@ -1,7 +1,11 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  inject,
+  OnInit,
 } from '@angular/core';
+
+import { ResumeStore } from '../../stores/resume.store';
 
 @Component({
   selector: 'app-landing-page',
@@ -11,5 +15,11 @@ import {
   styleUrl: './landing-page.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class LandingPageComponent {
+export class LandingPageComponent implements OnInit {
+
+  readonly resumeStore = inject(ResumeStore);
+
+  ngOnInit(): void {
+    this.resumeStore.loadResumes();
+  }
 }

@@ -1,4 +1,4 @@
 export const environment = {
-  apiUrl: 'http://fynn-koch.de:8080',
+  apiUrl: 'https://fynn-koch.de/api/',
   production: true,
 };

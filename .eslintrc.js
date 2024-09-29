@@ -9,5 +9,6 @@ module.exports = {
   ],
   rules: {
     'no-new-native-nonconstructor': 'off',
+    '@typescript-eslint/no-invalid-void-type': 'off'
   },
 };

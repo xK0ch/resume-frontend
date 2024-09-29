@@ -1,12 +1,12 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "OpenAPI definition",
-    "version": "v0"
+    "title": "Resume",
+    "version": "v1"
   },
   "servers": [
     {
-      "url": "http://fynn-koch.de:8080",
+      "url": "https://fynn-koch.de:8443",
       "description": "Generated server url"
     }
   ],
@@ -28,8 +28,18 @@
           }
         ],
         "responses": {
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "200": {
-            "description": "OK",
+            "description": "If the resume has been loaded successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -75,8 +85,21 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "200": {
-            "description": "OK",
+            "description": "If the resume has been updated successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -84,8 +107,23 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Resumes"],
@@ -112,10 +150,38 @@
           }
         ],
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "204": {
-            "description": "No Content"
+            "description": "If the resume has been deleted successfully."
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       },
       "patch": {
         "tags": ["Resumes"],
@@ -142,8 +208,31 @@
           }
         ],
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "200": {
-            "description": "OK",
+            "description": "If the status of the resume has been toggled successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -152,7 +241,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       }
     },
     "/resumes/{resumeId}/skills/{skillId}": {
@@ -200,8 +294,11 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "200": {
-            "description": "OK",
+            "description": "If the skill has been updated successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -209,8 +306,33 @@
                 }
               }
             }
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume or skill was found for the given ids.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       },
       "delete": {
         "tags": ["Skills"],
@@ -246,10 +368,38 @@
           }
         ],
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "204": {
-            "description": "No Content"
+            "description": "If the skill has been deleted successfully."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume or skill has been found for the given ids.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       }
     },
     "/resumes": {
@@ -259,7 +409,7 @@
         "operationId": "getAll",
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "If the resumes have been loaded successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -288,8 +438,11 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "201": {
-            "description": "Created",
+            "description": "If the resume has been created successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -298,7 +451,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       }
     },
     "/resumes/{resumeId}/skills": {
@@ -318,8 +476,18 @@
           }
         ],
         "responses": {
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "200": {
-            "description": "OK",
+            "description": "If the skills have been loaded successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -359,8 +527,21 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "201": {
-            "description": "Created",
+            "description": "If the skill has been created successfully.",
             "content": {
               "*/*": {
                 "schema": {
@@ -369,7 +550,12 @@
               }
             }
           }
-        }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
       }
     }
   },
@@ -422,6 +608,35 @@
           },
           "github": {
             "type": "string"
+          }
+        }
+      },
+      "ProblemDetail": {
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "format": "uri"
+          },
+          "title": {
+            "type": "string"
+          },
+          "status": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "detail": {
+            "type": "string"
+          },
+          "instance": {
+            "type": "string",
+            "format": "uri"
+          },
+          "properties": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
           }
         }
       },
@@ -597,6 +812,12 @@
             "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
           }
         }
+      }
+    },
+    "securitySchemes": {
+      "basicAuth": {
+        "type": "http",
+        "scheme": "basic"
       }
     }
   }
