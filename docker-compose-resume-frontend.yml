@@ -15,4 +15,4 @@ services:
 
 networks:
   resume-network:
-    driver: bridge
+    external: true
