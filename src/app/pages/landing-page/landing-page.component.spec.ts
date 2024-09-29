@@ -1,3 +1,5 @@
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import {
   ComponentFixture,
   TestBed,
@@ -12,6 +14,10 @@ describe('LandingPageComponent', () => {
   beforeEach(async() => {
     await TestBed.configureTestingModule({
       imports: [LandingPageComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     })
       .compileComponents();
 
