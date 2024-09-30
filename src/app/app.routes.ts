@@ -1,15 +1,17 @@
 import { Routes } from '@angular/router';
 
-import { LandingPageComponent } from './pages/landing-page/landing-page.component';
+import { ResumeOverviewComponent } from './pages/resume-overview/resume-overview.component';
+
+export const RESUME_OVERVIEW_SLUG = 'resume-overview';
 
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'landing-page',
+    redirectTo: RESUME_OVERVIEW_SLUG,
     pathMatch: 'full',
   },
   {
-    path: 'landing-page',
-    component: LandingPageComponent,
+    path: RESUME_OVERVIEW_SLUG,
+    component: ResumeOverviewComponent,
   },
 ];

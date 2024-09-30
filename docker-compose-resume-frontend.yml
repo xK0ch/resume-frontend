@@ -3,8 +3,6 @@ services:
     build: .
     container_name: resume-frontend
     image: resume-frontend:latest
-    networks:
-      - resume-network
     ports:
       - "80:80"
       - "443:443"
@@ -12,7 +10,3 @@ services:
     volumes:
       - /etc/letsencrypt/live/fynn-koch.de/fullchain.pem:/etc/nginx/ssl/fullchain.pem
       - /etc/letsencrypt/live/fynn-koch.de/privkey.pem:/etc/nginx/ssl/privkey.pem
-
-networks:
-  resume-network:
-    external: true

@@ -5,15 +5,15 @@ import {
   TestBed,
 } from '@angular/core/testing';
 
-import { LandingPageComponent } from './landing-page.component';
+import { ResumeOverviewComponent } from './resume-overview.component';
 
-describe('LandingPageComponent', () => {
-  let component: LandingPageComponent;
-  let fixture: ComponentFixture<LandingPageComponent>;
+describe('ResumeOverviewComponent', () => {
+  let component: ResumeOverviewComponent;
+  let fixture: ComponentFixture<ResumeOverviewComponent>;
 
   beforeEach(async() => {
     await TestBed.configureTestingModule({
-      imports: [LandingPageComponent],
+      imports: [ResumeOverviewComponent],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
@@ -21,7 +21,7 @@ describe('LandingPageComponent', () => {
     })
       .compileComponents();
 
-    fixture = TestBed.createComponent(LandingPageComponent);
+    fixture = TestBed.createComponent(ResumeOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
