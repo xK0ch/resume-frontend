@@ -7,7 +7,7 @@ import {
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideRouter } from '@angular/router';
 
-import { ApiModule } from '../../api/resume-api/src/api.module';
+import { ApiModule } from '../../api/src/api.module';
 import { environment } from '../environments/environment';
 import { routes } from './app.routes';
 

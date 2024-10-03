@@ -1,8 +1,13 @@
-import { inject } from '@angular/core';
+import {
+  computed,
+  inject,
+} from '@angular/core';
 import { tapResponse } from '@ngrx/operators';
 import {
   patchState,
   signalStore,
+  withComputed,
+  withHooks,
   withMethods,
   withState,
 } from '@ngrx/signals';
@@ -13,8 +18,8 @@ import {
   tap,
 } from 'rxjs';
 
-import { ResumeView } from '../../../api/resume-api/src/models/resume-view';
-import { ResumesService } from '../../../api/resume-api/src/services/resumes.service';
+import { ResumeView } from '../../../api/src/models/resume-view';
+import { ResumesService } from '../../../api/src/services/resumes.service';
 
 interface ResumeState {
   resumes: ResumeView[];
@@ -53,4 +58,14 @@ export const ResumeStore = signalStore(
       ),
     ),
   })),
+  withComputed(({ resumes }) => ({
+    activeResume: computed(() => resumes().find(resume => resume.status === 'ACTIVE')),
+  })),
+  withHooks(({ loadResumes }) => {
+    return {
+      onInit(): void {
+        loadResumes();
+      },
+    };
+  }),
 );

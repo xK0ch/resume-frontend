@@ -1,6 +1,0 @@
-{
-  "$schema": "../../node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
-  "input": "api/resume-api/openApi.json",
-  "output": "api/resume-api/src",
-  "ignoreUnusedModels": false
-}

@@ -31,7 +31,7 @@
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -41,7 +41,7 @@
           "200": {
             "description": "If the resume has been loaded successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
                 }
@@ -91,7 +91,7 @@
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -101,7 +101,7 @@
           "200": {
             "description": "If the resume has been updated successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
                 }
@@ -111,7 +111,7 @@
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -156,7 +156,7 @@
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -166,7 +166,7 @@
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -214,7 +214,7 @@
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -224,7 +224,7 @@
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -234,7 +234,7 @@
           "200": {
             "description": "If the status of the resume has been toggled successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
                 }
@@ -300,7 +300,7 @@
           "200": {
             "description": "If the skill has been updated successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SkillView"
                 }
@@ -310,7 +310,7 @@
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -320,7 +320,7 @@
           "404": {
             "description": "If no resume or skill was found for the given ids.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -377,7 +377,7 @@
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -387,7 +387,7 @@
           "404": {
             "description": "If no resume or skill has been found for the given ids.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -411,7 +411,7 @@
           "200": {
             "description": "If the resumes have been loaded successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -444,7 +444,7 @@
           "201": {
             "description": "If the resume has been created successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
                 }
@@ -479,7 +479,7 @@
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -489,7 +489,7 @@
           "200": {
             "description": "If the skills have been loaded successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "type": "array",
                   "items": {
@@ -533,7 +533,7 @@
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
                 }
@@ -543,7 +543,7 @@
           "201": {
             "description": "If the skill has been created successfully.",
             "content": {
-              "*/*": {
+              "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/SkillView"
                 }
