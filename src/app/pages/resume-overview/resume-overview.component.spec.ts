@@ -4,6 +4,7 @@ import {
   ComponentFixture,
   TestBed,
 } from '@angular/core/testing';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 
 import { ResumeOverviewComponent } from './resume-overview.component';
 
@@ -17,6 +18,7 @@ describe('ResumeOverviewComponent', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideAnimationsAsync(),
       ],
     })
       .compileComponents();

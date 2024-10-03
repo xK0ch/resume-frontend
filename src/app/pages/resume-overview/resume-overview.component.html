@@ -1,11 +1,16 @@
 <mat-grid-list
   cols="2"
   rowHeight="fit"
-  gutterSize="10px"
+  gutterSize="12px"
 >
-  <mat-grid-tile>
+  <mat-grid-tile [@slideInFromTop]>
     <app-general-information [resume]="resumeStore.activeResume()"></app-general-information>
   </mat-grid-tile>
-  <mat-grid-tile rowspan="2"> Skills tbd. </mat-grid-tile>
-  <mat-grid-tile> Timeline tbd. </mat-grid-tile>
+  <mat-grid-tile
+    rowspan="2"
+    [@slideInFromBottom]
+  >
+    Timeline tbd.</mat-grid-tile
+  >
+  <mat-grid-tile [@slideInFromLeft]> Skills tbd.</mat-grid-tile>
 </mat-grid-list>
