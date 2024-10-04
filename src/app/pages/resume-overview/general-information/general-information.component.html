@@ -1,14 +1,47 @@
-<div class="profile-container">
-  <img
-    ngSrc="f.koch_social.jpg"
-    class="profile-picture"
-    alt="profile-picture"
-    width="220"
-    height="220"
-    priority
-  >
-  <p class="profile-name">{{ resume?.firstName }} {{ resume?.lastName }}</p>
+<div class="resume-card">
+  <div class="profile-container">
+    <img
+      ngSrc="f.koch_social.jpg"
+      class="profile-picture"
+      alt="profile-picture"
+      width="120"
+      height="120"
+      priority
+    >
+    <div class="profile-details">
+      <p class="profile-name">{{ resume?.firstName }} {{ resume?.lastName }}</p>
+      <p class="profile-title">{{ resume?.status }}</p>
+    </div>
+  </div>
+
+  <div class="contact-info">
+    <p><strong>Adresse:</strong> {{ resume?.address }}, {{ resume?.postalCode }} {{ resume?.city }},
+      {{ resume?.country }}</p>
+    <p><strong>E-Mail:</strong> {{ resume?.email }}</p>
+    <p><strong>Festnetz:</strong> {{ resume?.phoneNumber }}</p>
+    <p><strong>Mobil:</strong> {{ resume?.mobileNumber }}</p>
+    <p><strong>Geburtstag:</strong> {{ resume?.dateOfBirth }}</p>
+  </div>
+
+  <div class="description-section">
+    <h3>Beschreibung</h3>
+    <p>{{ resume?.description }}</p>
+  </div>
+
+  <div class="links-section">
+    @if (resume?.github) {
+      <a href="{{ resume?.github }}" target="_blank">
+        <ng-icon name="simpleGithub" class="social-icon"></ng-icon>
+        GitHub
+      </a>
+    }
+
+    @if (resume?.github) {
+      <a href="{{ resume?.linkedin }}" target="_blank">
+        <ng-icon name="simpleLinkedin" class="social-icon"></ng-icon>
+        LinkedIn
+      </a>
+    }
+  </div>
 </div>
-<ng-icon name="simpleGithub"></ng-icon>
-<ng-icon name="simpleLinkedin"></ng-icon>
 
