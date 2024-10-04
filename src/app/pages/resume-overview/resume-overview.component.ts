@@ -14,60 +14,30 @@ import {
   MatCardContent,
   MatCardHeader,
 } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
-import { ResumeStore } from '../../stores/resume.store';
-import { GeneralInformationComponent } from './general-information/general-information.component';
+import {ResumeStore} from '../../stores/resume.store';
+import {GeneralInformationComponent} from './general-information/general-information.component';
 
 @Component({
   selector: 'app-resume-overview',
   standalone: true,
   imports: [
+    GeneralInformationComponent,
     MatGridListModule,
     MatCard,
     MatCardHeader,
     MatCardContent,
-    GeneralInformationComponent,
   ],
   templateUrl: './resume-overview.component.html',
   styleUrl: './resume-overview.component.scss',
   animations: [
-    trigger('slideInFromTop', [
+    trigger('fadeIn', [
       transition(':enter', [
-        style({
-          transform: 'translateY(-100%)',
-          opacity: 0,
-        }),
-        animate('1.5s ease-out', style({
-          transform: 'translateY(0)',
-          opacity: 1,
-        })),
-      ]),
-    ]),
-    trigger('slideInFromBottom', [
-      transition(':enter', [
-        style({
-          transform: 'translateY(100%)',
-          opacity: 0,
-        }),
-        animate('1.5s ease-out', style({
-          transform: 'translateY(0)',
-          opacity: 1,
-        })),
-      ]),
-    ]),
-    trigger('slideInFromLeft', [
-      transition(':enter', [
-        style({
-          transform: 'translateX(-100%)',
-          opacity: 0,
-        }),
-        animate('1.5s ease-out', style({
-          transform: 'translateX(0)',
-          opacity: 1,
-        })),
-      ]),
-    ]),
+        style({opacity: 0}),
+        animate('2s ease-in', style({opacity: 1}))
+      ])
+    ])
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })

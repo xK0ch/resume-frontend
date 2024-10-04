@@ -3,14 +3,17 @@
   rowHeight="fit"
   gutterSize="12px"
 >
-  <mat-grid-tile [@slideInFromTop]>
-    <app-general-information [resume]="resumeStore.activeResume()"></app-general-information>
+  <mat-grid-tile [@fadeIn]>
+    <div class="general-information-wrapper">
+      <app-general-information [resume]="resumeStore.activeResume()"></app-general-information>
+    </div>
   </mat-grid-tile>
   <mat-grid-tile
     rowspan="2"
-    [@slideInFromBottom]
+    [@fadeIn]
   >
-    Timeline tbd.</mat-grid-tile
+    Timeline tbd.
+  </mat-grid-tile
   >
-  <mat-grid-tile [@slideInFromLeft]> Skills tbd.</mat-grid-tile>
+  <mat-grid-tile [@fadeIn]> Skills tbd.</mat-grid-tile>
 </mat-grid-list>
