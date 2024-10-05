@@ -6,33 +6,33 @@ $text-color: #666;
 .resume-card {
   background-color: $resume-bg-color;
   border-radius: 8px;
-  padding: 30px;
-  width: 100%;
+  box-shadow: 0 4px 8px rgb(0 0 0 / 10%);
   height: 100%;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 30px;
   transition: box-shadow 0.3s ease;
+  width: 100%;
 
   &:hover {
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 8px 16px rgb(0 0 0 / 20%);
   }
 }
 
 .profile-container {
-  display: flex;
   align-items: center;
+  display: flex;
   margin-bottom: 20px;
 
   .profile-picture {
-    border-radius: 50%;
     border: 3px solid $primary-blue;
+    border-radius: 50%;
     margin-right: 20px;
   }
 
   .profile-details {
     .profile-name {
+      color: $primary-blue;
       font-size: 2.5rem;
       font-weight: 700;
-      color: $primary-blue;
       margin: 0;
     }
 
@@ -43,9 +43,9 @@ $text-color: #666;
 }
 
 .contact-info {
-  margin-bottom: 20px;
-  font-size: 0.95rem;
   color: $text-color;
+  font-size: 0.95rem;
+  margin-bottom: 20px;
 
   p {
     margin: 5px 0;
@@ -63,18 +63,18 @@ $text-color: #666;
   padding-right: 25%;
 
   h3 {
-    margin: 0 0 10px;
     color: $secondary-blue;
+    margin: 0 0 10px;
   }
 
   p {
+    color: $text-color;
     font-size: 1rem;
     line-height: 1.5;
-    color: $text-color;
-    white-space: pre-wrap;
-    word-wrap: break-word;
     overflow: hidden;
     text-overflow: ellipsis;
+    white-space: pre-wrap;
+    word-wrap: break-word;
   }
 }
 
@@ -83,11 +83,11 @@ $text-color: #666;
   gap: 15px;
 
   a {
-    display: flex;
     align-items: center;
-    text-decoration: none;
     color: $primary-blue;
+    display: flex;
     font-weight: bold;
+    text-decoration: none;
     transition: color 0.3s ease;
 
     &:hover {
@@ -95,8 +95,8 @@ $text-color: #666;
     }
 
     .social-icon {
-      margin-right: 5px;
       font-size: 1.5rem;
+      margin-right: 5px;
     }
   }
 }
