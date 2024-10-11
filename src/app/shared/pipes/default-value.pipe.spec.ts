@@ -1,4 +1,4 @@
-import {DefaultValuePipe} from './default-value.pipe';
+import { DefaultValuePipe } from './default-value.pipe';
 
 describe('DefaultValuePipe', () => {
   let pipe: DefaultValuePipe;

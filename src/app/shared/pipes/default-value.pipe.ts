@@ -2,7 +2,7 @@ import {
   Pipe,
   PipeTransform,
 } from '@angular/core';
-import {isNullOrUndefined} from "../../utils/is-null-or-undefined";
+import { isNullOrUndefined } from '@ewerk/null-or-undefined';
 
 @Pipe({
   name: 'defaultValue',

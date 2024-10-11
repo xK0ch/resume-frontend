@@ -14,8 +14,7 @@
   </div>
 
   <div class="contact-info">
-    <p><strong>Adresse:</strong> {{ resume?.address }}, {{ resume?.postalCode }} {{ resume?.city }}
-      , {{ resume?.country }}</p>
+    <p><strong>Adresse:</strong> {{ resume?.address }}, {{ resume?.postalCode }} {{ resume?.city }} , {{ resume?.country }}</p>
     <p><strong>E-Mail:</strong> {{ resume?.email }}</p>
     <p><strong>Festnetz:</strong> {{ resume?.phoneNumber | defaultValue }}</p>
     <p><strong>Mobil:</strong> {{ resume?.mobileNumber | defaultValue }}</p>
@@ -29,28 +28,27 @@
 
   <div class="links-section">
     @if (resume?.github) {
-      <a
-        href="{{ resume?.github }}"
-        target="_blank"
-      >
-        <ng-icon
-          name="simpleGithub"
-          class="social-icon"
-        ></ng-icon>
-        GitHub
-      </a>
-    }
-    @if (resume?.github) {
-      <a
-        href="{{ resume?.linkedin }}"
-        target="_blank"
-      >
-        <ng-icon
-          name="simpleLinkedin"
-          class="social-icon"
-        ></ng-icon>
-        LinkedIn
-      </a>
+    <a
+      href="{{ resume?.github }}"
+      target="_blank"
+    >
+      <ng-icon
+        name="simpleGithub"
+        class="social-icon"
+      ></ng-icon>
+      GitHub
+    </a>
+    } @if (resume?.github) {
+    <a
+      href="{{ resume?.linkedin }}"
+      target="_blank"
+    >
+      <ng-icon
+        name="simpleLinkedin"
+        class="social-icon"
+      ></ng-icon>
+      LinkedIn
+    </a>
     }
   </div>
 </div>

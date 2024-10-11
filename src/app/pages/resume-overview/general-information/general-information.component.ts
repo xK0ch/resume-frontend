@@ -1,4 +1,4 @@
-import {NgOptimizedImage} from '@angular/common';
+import { NgOptimizedImage } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
@@ -17,9 +17,9 @@ import {
   simpleLinkedin,
 } from '@ng-icons/simple-icons';
 
-import {ResumeView} from '../../../../../api/src/models/resume-view';
-import {DateFormatPipe} from '../../../shared/pipes/date-format.pipe';
-import {DefaultValuePipe} from "../../../shared/pipes/default-value.pipe";
+import { ResumeView } from '../../../../../api/src/models/resume-view';
+import { DateFormatPipe } from '../../../shared/pipes/date-format.pipe';
+import { DefaultValuePipe } from '../../../shared/pipes/default-value.pipe';
 
 @Component({
   selector: 'app-general-information',
