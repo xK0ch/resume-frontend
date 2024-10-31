@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { OverviewComponent } from './overview.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {OverviewComponent} from './overview.component';
+import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -8,9 +8,10 @@ describe('OverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [OverviewComponent]
+      imports: [OverviewComponent],
+      providers: [provideAnimationsAsync()]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(OverviewComponent);
     component = fixture.componentInstance;

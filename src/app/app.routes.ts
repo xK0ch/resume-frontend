@@ -1,5 +1,4 @@
 import {Routes} from '@angular/router';
-
 import {OverviewComponent} from "./pages/overview/overview.component";
 import {SkillsComponent} from "./pages/skills/skills.component";
 import {TimelineComponent} from "./pages/timeline/timeline.component";

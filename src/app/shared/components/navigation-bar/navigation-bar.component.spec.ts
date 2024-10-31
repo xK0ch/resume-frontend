@@ -1,6 +1,8 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { NavigationBarComponent } from './navigation-bar.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {NavigationBarComponent} from './navigation-bar.component';
+import {provideHttpClient} from "@angular/common/http";
+import {provideHttpClientTesting} from "@angular/common/http/testing";
+import {provideRouter} from "@angular/router";
 
 describe('NavigationBarComponent', () => {
   let component: NavigationBarComponent;
@@ -8,9 +10,14 @@ describe('NavigationBarComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NavigationBarComponent]
+      imports: [NavigationBarComponent],
+      providers: [
+        provideHttpClient(),
+        provideHttpClientTesting(),
+        provideRouter([]),
+      ],
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(NavigationBarComponent);
     component = fixture.componentInstance;
