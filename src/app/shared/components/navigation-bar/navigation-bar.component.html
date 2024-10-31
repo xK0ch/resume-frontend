@@ -1,0 +1,21 @@
+<mat-toolbar color="primary" class="navbar">
+  <div class="nav-links">
+    <button mat-button>Übersicht</button>
+    <button mat-button>Skills</button>
+    <button mat-button>Lebenslauf</button>
+  </div>
+
+  <span class="spacer"></span>
+  <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
+    <ng-icon
+      name="simpleGithub"
+      class="social-icon"
+    ></ng-icon>
+  </button>
+  <button mat-icon-button aria-label="LinkedIn" (click)="openExternalLink(resumeStore.activeResume()?.linkedin)">
+    <ng-icon
+      name="simpleLinkedin"
+      class="social-icon"
+    ></ng-icon>
+  </button>
+</mat-toolbar>

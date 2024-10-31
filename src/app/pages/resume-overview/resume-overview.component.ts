@@ -14,10 +14,10 @@ import {
   MatCardContent,
   MatCardHeader,
 } from '@angular/material/card';
-import { MatGridListModule } from '@angular/material/grid-list';
+import {MatGridListModule} from '@angular/material/grid-list';
 
-import { ResumeStore } from '../../stores/resume.store';
-import { GeneralInformationComponent } from './general-information/general-information.component';
+import {ResumeStore} from '../../stores/resume.store';
+import {GeneralInformationComponent} from './general-information/general-information.component';
 
 @Component({
   selector: 'app-resume-overview',
@@ -34,12 +34,11 @@ import { GeneralInformationComponent } from './general-information/general-infor
   animations: [
     trigger('fadeIn', [
       transition(':enter', [
-        style({ opacity: 0 }),
-        animate('2s ease-in', style({ opacity: 1 })),
+        style({opacity: 0}),
+        animate('2s ease-in', style({opacity: 1})),
       ]),
     ]),
   ],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResumeOverviewComponent {
 
