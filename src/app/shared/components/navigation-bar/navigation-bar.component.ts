@@ -1,10 +1,9 @@
 import {Component, inject} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
-import {MatIcon} from "@angular/material/icon";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {NgIcon, provideIcons} from "@ng-icons/core";
 import {ResumeStore} from "../../../stores/resume.store";
-import {simpleGithub, simpleLinkedin} from "@ng-icons/simple-icons";
+import {ionBulb, ionGitCommit, ionLogoGithub, ionLogoLinkedin, ionMenu, ionPerson} from "@ng-icons/ionicons";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {RouterLink} from "@angular/router";
@@ -18,7 +17,6 @@ import {PushPipe} from '@ngrx/component';
   standalone: true,
   imports: [
     MatButton,
-    MatIcon,
     MatIconButton,
     MatMenu,
     MatMenuItem,
@@ -32,8 +30,12 @@ import {PushPipe} from '@ngrx/component';
   styleUrl: './navigation-bar.component.scss',
   viewProviders: [
     provideIcons({
-      simpleGithub,
-      simpleLinkedin,
+      ionBulb,
+      ionGitCommit,
+      ionLogoGithub,
+      ionLogoLinkedin,
+      ionMenu,
+      ionPerson,
     }),
   ],
 })
