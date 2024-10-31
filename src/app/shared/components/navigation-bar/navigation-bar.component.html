@@ -1,9 +1,22 @@
 <mat-toolbar color="primary" class="navbar">
-  <div class="nav-links">
-    <button mat-button>Übersicht</button>
-    <button mat-button>Skills</button>
-    <button mat-button>Lebenslauf</button>
-  </div>
+  @if (!isSmallScreen) {
+    <div class="nav-links">
+      <button mat-button [routerLink]="OVERVIEW_SLUG">Übersicht</button>
+      <button mat-button [routerLink]="SKILLS_SLUG">Skills</button>
+      <button mat-button [routerLink]="TIMELINE_SLUG">Lebenslauf</button>
+    </div>
+  }
+
+  @if (isSmallScreen) {
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>menu</mat-icon>
+    </button>
+  }
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item [routerLink]="OVERVIEW_SLUG">Übersicht</button>
+    <button mat-menu-item [routerLink]="SKILLS_SLUG">Skills</button>
+    <button mat-menu-item [routerLink]="TIMELINE_SLUG">Lebenslauf</button>
+  </mat-menu>
 
   <span class="spacer"></span>
   <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
