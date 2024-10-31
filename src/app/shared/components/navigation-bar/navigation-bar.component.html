@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="navbar">
-  @if (!isSmallScreen) {
+  @if (!(isSmallScreen$ | ngrxPush)) {
     <div class="nav-links">
       <button mat-button [routerLink]="OVERVIEW_SLUG">Übersicht</button>
       <button mat-button [routerLink]="SKILLS_SLUG">Skills</button>
@@ -7,7 +7,7 @@
     </div>
   }
 
-  @if (isSmallScreen) {
+  @if (isSmallScreen$ | ngrxPush) {
     <button mat-icon-button [matMenuTriggerFor]="menu">
       <mat-icon>menu</mat-icon>
     </button>
@@ -19,16 +19,20 @@
   </mat-menu>
 
   <span class="spacer"></span>
-  <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
-    <ng-icon
-      name="simpleGithub"
-      class="social-icon"
-    ></ng-icon>
-  </button>
-  <button mat-icon-button aria-label="LinkedIn" (click)="openExternalLink(resumeStore.activeResume()?.linkedin)">
-    <ng-icon
-      name="simpleLinkedin"
-      class="social-icon"
-    ></ng-icon>
-  </button>
+  @if (resumeStore.activeResume()?.github) {
+    <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
+      <ng-icon
+        name="simpleGithub"
+        class="social-icon"
+      ></ng-icon>
+    </button>
+  }
+  @if (resumeStore.activeResume()?.linkedin) {
+    <button mat-icon-button aria-label="LinkedIn" (click)="openExternalLink(resumeStore.activeResume()?.linkedin)">
+      <ng-icon
+        name="simpleLinkedin"
+        class="social-icon"
+      ></ng-icon>
+    </button>
+  }
 </mat-toolbar>

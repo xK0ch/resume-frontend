@@ -9,19 +9,23 @@ import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {RouterLink} from "@angular/router";
 import {OVERVIEW_SLUG, SKILLS_SLUG, TIMELINE_SLUG} from "../../../app.routes";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
+import {PushPipe} from '@ngrx/component';
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
   imports: [
-    MatToolbar,
-    MatIcon,
     MatButton,
+    MatIcon,
     MatIconButton,
-    NgIcon,
     MatMenu,
-    MatMenuTrigger,
     MatMenuItem,
+    MatMenuTrigger,
+    MatToolbar,
+    NgIcon,
+    PushPipe,
     RouterLink,
   ],
   templateUrl: './navigation-bar.component.html',
@@ -33,23 +37,18 @@ import {OVERVIEW_SLUG, SKILLS_SLUG, TIMELINE_SLUG} from "../../../app.routes";
     }),
   ],
 })
-export class NavigationBarComponent implements OnInit {
-
-  isSmallScreen = false;
+export class NavigationBarComponent {
 
   OVERVIEW_SLUG: string = OVERVIEW_SLUG
   SKILLS_SLUG: string = SKILLS_SLUG;
-  TIMELINE_SLUG: string= TIMELINE_SLUG;
+  TIMELINE_SLUG: string = TIMELINE_SLUG;
 
   resumeStore = inject(ResumeStore);
   breakpointObserver = inject(BreakpointObserver);
 
-  ngOnInit(): void {
-    this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset])
-      .subscribe(result => {
-        this.isSmallScreen = result.matches;
-      });
-  }
+  isSmallScreen$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset]).pipe(
+    map(result => result.matches)
+  );
 
   openExternalLink(url: string | undefined): void {
     window.open(url, '_blank');
