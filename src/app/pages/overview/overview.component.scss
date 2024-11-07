@@ -1,0 +1,94 @@
+$primary-blue: #4a90e2;
+$secondary-blue: #1e5bb8;
+$text-color: #333;
+
+.overview {
+  max-width: 100%;
+  width: 100vw;
+  margin: auto;
+  padding: 32px;
+  box-sizing: border-box;
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 24px;
+
+    .profile-picture {
+      flex-shrink: 0;
+      margin-right: 24px;
+      overflow: hidden;
+
+      img {
+        display: block;
+        border: 3px solid $primary-blue;
+        border-radius: 50%;
+        width: 125px;
+        height: 125px;
+      }
+    }
+
+    .info {
+      h1 {
+        font-size: 2.5rem;
+        margin: 0;
+        color: #333;
+      }
+    }
+  }
+
+  .basic-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    font-size: 1.1rem;
+    color: #555;
+
+    p {
+      flex: 1 1 48%;
+      margin: 8px 0;
+
+      strong {
+        color: $secondary-blue;
+      }
+    }
+  }
+
+  .description {
+    margin-top: 32px;
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 0 0 8px;
+      color: $secondary-blue;
+    }
+
+    p {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: $text-color;
+    }
+  }
+
+  @media (min-width: 1600px) {
+    .resume-overview {
+      padding: 48px 5vw;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .header {
+      flex-direction: column;
+      text-align: center;
+
+      .profile-picture {
+        margin: 0 0 16px;
+      }
+    }
+
+    .basic-info {
+      flex-direction: column;
+    }
+  }
+}

@@ -1,10 +1,20 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {animate, style, transition, trigger} from "@angular/animations";
+import {ResumeStore} from "../../stores/resume.store";
+import {NgOptimizedImage} from "@angular/common";
+import {DefaultValuePipe} from "../../shared/pipes/default-value.pipe";
+import {DateFormatPipe} from "../../shared/pipes/date-format.pipe";
+import {MatProgressSpinner} from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-overview',
   standalone: true,
-  imports: [],
+  imports: [
+    DateFormatPipe,
+    DefaultValuePipe,
+    NgOptimizedImage,
+    MatProgressSpinner
+  ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
   animations: [
@@ -18,4 +28,5 @@ import {animate, style, transition, trigger} from "@angular/animations";
 })
 export class OverviewComponent {
 
+  resumeStore = inject(ResumeStore);
 }
