@@ -1,1 +1,9 @@
-<p>Skills to be done</p>
+@if (!skillStore.isLoading()) {
+  @for (skill of skillStore.skills(); track skill.name) {
+    <app-skill [skill]="skill"></app-skill>
+  } @empty {
+    <li>Keine Skills vorhanden.</li>
+  }
+} @else {
+  <mat-spinner></mat-spinner>
+}

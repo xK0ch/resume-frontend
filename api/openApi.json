@@ -89,6 +89,19 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
@@ -99,25 +112,12 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "200": {
             "description": "If the resume has been updated successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
-                }
-              }
-            }
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
                 }
               }
             }
@@ -156,8 +156,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "If no resume has been found for the given id.",
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
             "content": {
               "application/json": {
                 "schema": {
@@ -166,11 +169,8 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
+          "404": {
+            "description": "If no resume has been found for the given id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -250,22 +250,22 @@
               }
             }
           },
-          "200": {
-            "description": "If the skill has been updated successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/SkillView"
-                }
-              }
-            }
-          },
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "If the skill has been updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SkillView"
                 }
               }
             }
@@ -313,11 +313,18 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "If the skill has been deleted successfully."
-          },
           "401": {
             "description": "If the user is not authorized to access this resource."
+          },
+          "404": {
+            "description": "If no resume or skill has been found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -329,15 +336,8 @@
               }
             }
           },
-          "404": {
-            "description": "If no resume or skill has been found for the given ids.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "204": {
+            "description": "If the skill has been deleted successfully."
           }
         },
         "security": [
@@ -387,6 +387,9 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "201": {
             "description": "If the resume has been created successfully.",
             "content": {
@@ -396,9 +399,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -480,6 +480,9 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
@@ -489,9 +492,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
           },
           "201": {
             "description": "If the skill has been created successfully.",
@@ -539,6 +539,19 @@
           }
         ],
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
@@ -549,25 +562,12 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "200": {
             "description": "If the status of the resume has been toggled successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
-                }
-              }
-            }
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
                 }
               }
             }
@@ -839,9 +839,11 @@
               "INTERMEDIATE",
               "ADVANCED",
               "EXPERT",
-              "FEMALE",
-              "DIVERSE",
-              "MALE"
+              "NOVICE",
+              "ADVANCED_BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT"
             ]
           }
         }
