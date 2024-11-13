@@ -13,7 +13,9 @@
   "paths": {
     "/resumes/{resumeId}": {
       "get": {
-        "tags": ["Resumes"],
+        "tags": [
+          "Resumes"
+        ],
         "summary": "Get a resume",
         "operationId": "getOne",
         "parameters": [
@@ -51,7 +53,9 @@
         }
       },
       "put": {
-        "tags": ["Resumes"],
+        "tags": [
+          "Resumes"
+        ],
         "summary": "Update a resume",
         "operationId": "update",
         "parameters": [
@@ -85,9 +89,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
@@ -97,6 +98,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "200": {
             "description": "If the resume has been updated successfully.",
@@ -126,7 +130,9 @@
         ]
       },
       "delete": {
-        "tags": ["Resumes"],
+        "tags": [
+          "Resumes"
+        ],
         "summary": "Delete a resume",
         "operationId": "delete",
         "parameters": [
@@ -150,9 +156,6 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "404": {
             "description": "If no resume has been found for the given id.",
             "content": {
@@ -162,6 +165,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -182,76 +188,13 @@
             "basicAuth": []
           }
         ]
-      },
-      "patch": {
-        "tags": ["Resumes"],
-        "summary": "Toggles the status of a resume from ACTIVE to INACTIVE and the other way around. Only one resume can be active at a time",
-        "operationId": "toggleStatus",
-        "parameters": [
-          {
-            "name": "resumeId",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "uuid"
-            }
-          },
-          {
-            "name": "If-Modified-Since",
-            "in": "header",
-            "required": true,
-            "schema": {
-              "type": "string",
-              "format": "date-time"
-            }
-          }
-        ],
-        "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "404": {
-            "description": "If no resume has been found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
-          "200": {
-            "description": "If the status of the resume has been toggled successfully.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ResumeView"
-                }
-              }
-            }
-          }
-        },
-        "security": [
-          {
-            "basicAuth": []
-          }
-        ]
       }
     },
     "/resumes/{resumeId}/skills/{skillId}": {
       "put": {
-        "tags": ["Skills"],
+        "tags": [
+          "Skills"
+        ],
         "summary": "Update a skill of a resume",
         "operationId": "update_1",
         "parameters": [
@@ -297,6 +240,16 @@
           "401": {
             "description": "If the user is not authorized to access this resource."
           },
+          "404": {
+            "description": "If no resume or skill was found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
           "200": {
             "description": "If the skill has been updated successfully.",
             "content": {
@@ -316,16 +269,6 @@
                 }
               }
             }
-          },
-          "404": {
-            "description": "If no resume or skill was found for the given ids.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
           }
         },
         "security": [
@@ -335,7 +278,9 @@
         ]
       },
       "delete": {
-        "tags": ["Skills"],
+        "tags": [
+          "Skills"
+        ],
         "summary": "Delete a skill of a resume",
         "operationId": "delete_1",
         "parameters": [
@@ -368,11 +313,11 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "204": {
             "description": "If the skill has been deleted successfully."
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -404,7 +349,9 @@
     },
     "/resumes": {
       "get": {
-        "tags": ["Resumes"],
+        "tags": [
+          "Resumes"
+        ],
         "summary": "Get all resumes",
         "operationId": "getAll",
         "responses": {
@@ -424,7 +371,9 @@
         }
       },
       "post": {
-        "tags": ["Resumes"],
+        "tags": [
+          "Resumes"
+        ],
         "summary": "Create a resume",
         "operationId": "create",
         "requestBody": {
@@ -438,9 +387,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "201": {
             "description": "If the resume has been created successfully.",
             "content": {
@@ -450,6 +396,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -461,7 +410,9 @@
     },
     "/resumes/{resumeId}/skills": {
       "get": {
-        "tags": ["Skills"],
+        "tags": [
+          "Skills"
+        ],
         "summary": "Get all skills of a resume",
         "operationId": "getAllByResume",
         "parameters": [
@@ -502,7 +453,9 @@
         }
       },
       "post": {
-        "tags": ["Skills"],
+        "tags": [
+          "Skills"
+        ],
         "summary": "Create a skill for a resume",
         "operationId": "create_1",
         "parameters": [
@@ -527,9 +480,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
@@ -539,6 +489,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "201": {
             "description": "If the skill has been created successfully.",
@@ -557,12 +510,91 @@
           }
         ]
       }
+    },
+    "/resumes/{resumeId}/toggle-status": {
+      "patch": {
+        "tags": [
+          "Resumes"
+        ],
+        "summary": "Toggles the status of a resume from ACTIVE to INACTIVE and the other way around. Only one resume can be active at a time",
+        "operationId": "toggleStatus",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "200": {
+            "description": "If the status of the resume has been toggled successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
     }
   },
   "components": {
     "schemas": {
       "ResumeUpdateOrder": {
-        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "lastName", "postalCode", "sex"],
+        "required": [
+          "address",
+          "city",
+          "country",
+          "dateOfBirth",
+          "description",
+          "firstName",
+          "lastName",
+          "postalCode",
+          "sex"
+        ],
         "type": "object",
         "properties": {
           "firstName": {
@@ -573,7 +605,11 @@
           },
           "sex": {
             "type": "string",
-            "enum": ["FEMALE", "DIVERSE", "MALE"]
+            "enum": [
+              "FEMALE",
+              "DIVERSE",
+              "MALE"
+            ]
           },
           "dateOfBirth": {
             "type": "string",
@@ -641,7 +677,20 @@
         }
       },
       "ResumeView": {
-        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "id", "lastName", "postalCode", "sex", "status"],
+        "required": [
+          "address",
+          "city",
+          "country",
+          "dateOfBirth",
+          "description",
+          "firstName",
+          "id",
+          "lastModifiedAt",
+          "lastName",
+          "postalCode",
+          "sex",
+          "status"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -649,6 +698,12 @@
             "description": "The unique identifier of the entity",
             "format": "uuid",
             "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "lastModifiedAt": {
+            "type": "string",
+            "description": "The timestamp the entity has last been modified",
+            "format": "date-time",
+            "example": "2024-12-05T10:40:51.123456+02:00"
           },
           "firstName": {
             "type": "string",
@@ -661,7 +716,14 @@
           "sex": {
             "type": "string",
             "description": "Sex of the resumes creator",
-            "enum": ["FEMALE", "DIVERSE", "MALE", "FEMALE", "DIVERSE", "MALE"]
+            "enum": [
+              "FEMALE",
+              "DIVERSE",
+              "MALE",
+              "FEMALE",
+              "DIVERSE",
+              "MALE"
+            ]
           },
           "dateOfBirth": {
             "type": "string",
@@ -712,12 +774,20 @@
           "status": {
             "type": "string",
             "description": "Status of the resume",
-            "enum": ["ACTIVE", "INACTIVE", "ACTIVE", "INACTIVE"]
+            "enum": [
+              "ACTIVE",
+              "INACTIVE",
+              "ACTIVE",
+              "INACTIVE"
+            ]
           }
         }
       },
       "SkillUpdateOrder": {
-        "required": ["name", "skillLevel"],
+        "required": [
+          "name",
+          "skillLevel"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -725,12 +795,23 @@
           },
           "skillLevel": {
             "type": "string",
-            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+            "enum": [
+              "NOVICE",
+              "ADVANCED_BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT"
+            ]
           }
         }
       },
       "SkillView": {
-        "required": ["id", "name", "skillLevel"],
+        "required": [
+          "id",
+          "lastModifiedAt",
+          "name",
+          "skillLevel"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -739,6 +820,12 @@
             "format": "uuid",
             "example": "123e4567-e89b-12d3-a456-426614174000"
           },
+          "lastModifiedAt": {
+            "type": "string",
+            "description": "The timestamp the entity has last been modified",
+            "format": "date-time",
+            "example": "2024-12-05T10:40:51.123456+02:00"
+          },
           "name": {
             "type": "string",
             "description": "Name of the skill"
@@ -746,12 +833,31 @@
           "skillLevel": {
             "type": "string",
             "description": "Level of the skill",
-            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT", "FEMALE", "DIVERSE", "MALE"]
+            "enum": [
+              "NOVICE",
+              "ADVANCED_BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT",
+              "FEMALE",
+              "DIVERSE",
+              "MALE"
+            ]
           }
         }
       },
       "ResumeCreateOrder": {
-        "required": ["address", "city", "country", "dateOfBirth", "description", "firstName", "lastName", "postalCode", "sex"],
+        "required": [
+          "address",
+          "city",
+          "country",
+          "dateOfBirth",
+          "description",
+          "firstName",
+          "lastName",
+          "postalCode",
+          "sex"
+        ],
         "type": "object",
         "properties": {
           "firstName": {
@@ -762,7 +868,11 @@
           },
           "sex": {
             "type": "string",
-            "enum": ["FEMALE", "DIVERSE", "MALE"]
+            "enum": [
+              "FEMALE",
+              "DIVERSE",
+              "MALE"
+            ]
           },
           "dateOfBirth": {
             "type": "string",
@@ -801,7 +911,10 @@
         }
       },
       "SkillCreateOrder": {
-        "required": ["name", "skillLevel"],
+        "required": [
+          "name",
+          "skillLevel"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -809,7 +922,13 @@
           },
           "skillLevel": {
             "type": "string",
-            "enum": ["NOVICE", "ADVANCED_BEGINNER", "INTERMEDIATE", "ADVANCED", "EXPERT"]
+            "enum": [
+              "NOVICE",
+              "ADVANCED_BEGINNER",
+              "INTERMEDIATE",
+              "ADVANCED",
+              "EXPERT"
+            ]
           }
         }
       }

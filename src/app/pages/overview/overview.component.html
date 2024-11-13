@@ -1,4 +1,4 @@
-@if (resumeStore.activeResume()) {
+@if (!resumeStore.isLoading()) {
   <div class="overview" [@fadeIn]>
     <div class="header">
       <div class="profile-picture">
