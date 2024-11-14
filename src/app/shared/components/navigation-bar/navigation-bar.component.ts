@@ -2,8 +2,7 @@ import {Component, inject} from '@angular/core';
 import {MatToolbar} from "@angular/material/toolbar";
 import {MatButton, MatIconButton} from "@angular/material/button";
 import {NgIcon, provideIcons} from "@ng-icons/core";
-import {ResumeStore} from "../../../stores/resume.store";
-import {ionBulb, ionGitCommit, ionLogoGithub, ionLogoLinkedin, ionMenu, ionPerson} from "@ng-icons/ionicons";
+import {ionBulb, ionGitCommit, ionMenu, ionPerson} from "@ng-icons/ionicons";
 import {MatMenu, MatMenuItem, MatMenuTrigger} from "@angular/material/menu";
 import {BreakpointObserver, Breakpoints} from "@angular/cdk/layout";
 import {RouterLink} from "@angular/router";
@@ -36,8 +35,6 @@ import {TranslocoDirective} from "@jsverse/transloco";
     provideIcons({
       ionBulb,
       ionGitCommit,
-      ionLogoGithub,
-      ionLogoLinkedin,
       ionMenu,
       ionPerson,
     }),
@@ -49,14 +46,9 @@ export class NavigationBarComponent {
   SKILLS_SLUG: string = SKILLS_SLUG;
   TIMELINE_SLUG: string = TIMELINE_SLUG;
 
-  resumeStore = inject(ResumeStore);
   breakpointObserver = inject(BreakpointObserver);
 
   isSmallScreen$: Observable<boolean> = this.breakpointObserver.observe([Breakpoints.Small, Breakpoints.Handset]).pipe(
     map(result => result.matches)
   );
-
-  openExternalLink(url: string | undefined): void {
-    window.open(url, '_blank');
-  }
 }

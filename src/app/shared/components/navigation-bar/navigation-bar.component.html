@@ -33,14 +33,4 @@
 
   <span class="spacer"></span>
   <app-language-switcher></app-language-switcher>
-  @if (resumeStore.activeResume()?.github) {
-    <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
-      <ng-icon name="ionLogoGithub" class="icon"></ng-icon>
-    </button>
-  }
-  @if (resumeStore.activeResume()?.linkedin) {
-    <button mat-icon-button aria-label="LinkedIn" (click)="openExternalLink(resumeStore.activeResume()?.linkedin)">
-      <ng-icon name="ionLogoLinkedin" class="icon"></ng-icon>
-    </button>
-  }
 </mat-toolbar>

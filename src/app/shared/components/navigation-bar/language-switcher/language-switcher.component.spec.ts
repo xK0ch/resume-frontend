@@ -1,6 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { LanguageSwitcherComponent } from './language-switcher.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {LanguageSwitcherComponent} from './language-switcher.component';
+import {getTranslocoModule} from "../../../../transloco-testing.module";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('LanguageSwitcherComponent', () => {
   let component: LanguageSwitcherComponent;
@@ -8,9 +9,13 @@ describe('LanguageSwitcherComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LanguageSwitcherComponent]
+      imports: [
+        BrowserAnimationsModule,
+        getTranslocoModule(),
+        LanguageSwitcherComponent
+      ]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(LanguageSwitcherComponent);
     component = fixture.componentInstance;

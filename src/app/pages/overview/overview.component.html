@@ -2,7 +2,7 @@
   <div
     [@fadeIn]
     class="overview"
-    *transloco="let t; read: 'overview'"
+    *transloco="let t; prefix: 'overview'"
     >
     <div class="header">
       <div class="profile-picture">
@@ -21,8 +21,8 @@
     </div>
 
     <div class="basic-info">
-      <p><strong>{{ t('address') }}:</strong> {{ resumeStore.activeResume()?.address }}
-        , {{ resumeStore.activeResume()?.postalCode }}{{ resumeStore.activeResume()?.city }},
+      <p><strong>{{ t('address') }}:</strong> {{ resumeStore.activeResume()?.address }},
+        {{ resumeStore.activeResume()?.postalCode }} {{ resumeStore.activeResume()?.city }},
         {{ resumeStore.activeResume()?.country }}
       </p>
       <p><strong>{{ t('birthday') }}:</strong> {{ resumeStore.activeResume()?.dateOfBirth | dateFormat }}</p>
