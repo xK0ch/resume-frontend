@@ -1,9 +1,9 @@
 @if (!resumeStore.isLoading()) {
   <div
-    [@fadeIn]
+    *transloco="let t; read: 'overview'"
     class="overview"
-    *transloco="let t; prefix: 'overview'"
-    >
+    [@fadeIn]
+  >
     <div class="header">
       <div class="profile-picture">
         <img
@@ -17,14 +17,35 @@
       </div>
       <div class="info">
         <h1>{{ resumeStore.activeResume()?.firstName }} {{ resumeStore.activeResume()?.lastName }}</h1>
+        <div class="social-buttons">
+          @if (resumeStore.activeResume()?.github) {
+            <button
+              mat-icon-button
+              class="github"
+              aria-label="GitHub"
+              (click)="openExternalLink(resumeStore.activeResume()?.github)"
+            >
+              <ng-icon name="ionLogoGithub" class="icon"></ng-icon>
+            </button>
+          }
+          @if (resumeStore.activeResume()?.linkedin) {
+            <button
+              mat-icon-button
+              class="linkedin"
+              aria-label="LinkedIn"
+              (click)="openExternalLink(resumeStore.activeResume()?.linkedin)"
+            >
+              <ng-icon name="ionLogoLinkedin" class="icon"></ng-icon>
+            </button>
+          }
+        </div>
       </div>
     </div>
 
     <div class="basic-info">
       <p><strong>{{ t('address') }}:</strong> {{ resumeStore.activeResume()?.address }},
         {{ resumeStore.activeResume()?.postalCode }} {{ resumeStore.activeResume()?.city }},
-        {{ resumeStore.activeResume()?.country }}
-      </p>
+        {{ resumeStore.activeResume()?.country }}</p>
       <p><strong>{{ t('birthday') }}:</strong> {{ resumeStore.activeResume()?.dateOfBirth | dateFormat }}</p>
       <p><strong>{{ t('mail') }}:</strong> {{ resumeStore.activeResume()?.email }}</p>
       <p><strong>{{ t('mobile') }}:</strong> {{ resumeStore.activeResume()?.mobileNumber | defaultValue }}</p>

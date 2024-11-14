@@ -31,6 +31,27 @@
         margin: 0;
         color: var(--text-color);
       }
+
+      .social-buttons {
+        margin-top: 8px;
+
+        button {
+          margin-right: 8px;
+
+          .icon {
+            vertical-align: top;
+            line-height: 1;
+          }
+
+          &.github .icon {
+            color: #24292e;
+          }
+
+          &.linkedin .icon {
+            color: #0077B5;
+          }
+        }
+      }
     }
   }
 
@@ -68,9 +89,7 @@
   }
 
   @media (min-width: 1600px) {
-    .resume-overview {
-      padding: 48px 5vw;
-    }
+    padding: 48px 5vw;
   }
 
   @media (max-width: 768px) {
@@ -80,6 +99,10 @@
 
       .profile-picture {
         margin: 0 0 16px;
+      }
+
+      .social-buttons {
+        justify-content: center;
       }
     }
 
