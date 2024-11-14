@@ -1,9 +1,14 @@
 mat-form-field {
-  width: 106px;
-}
+  width: 96px;
+  margin-top: 20px;
 
-.mat-select-trigger {
-  white-space: nowrap;
+  mat-label {
+    font-size: 13px;
+  }
+
+  mat-select {
+    text-align:center;
+  }
 }
 
 

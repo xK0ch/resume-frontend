@@ -7,9 +7,6 @@
   .nav-links {
     display: flex;
     gap: 16px;
-  }
-
-  .spacer {
-    flex-grow: 1;
+    flex: 1;
   }
 }
