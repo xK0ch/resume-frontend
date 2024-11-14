@@ -1,0 +1,26 @@
+<mat-form-field *transloco="let t">
+  <mat-label>{{ t('language') }}</mat-label>
+  <mat-select [(ngModel)]="currentLang" (ngModelChange)="onChange($event)">
+    <mat-select-trigger>
+      <img
+        ngSrc="{{ getFlagUrl(currentLang) }}"
+        alt="{{ currentLang }} flag"
+        width="20"
+        height="15"
+        priority
+      >
+    </mat-select-trigger>
+
+    @for (lang of languages; track lang) {
+      <mat-option [value]="lang">
+        <img
+          ngSrc="{{ getFlagUrl(lang) }}"
+          alt="{{ lang }} flag"
+          width="20"
+          height="15"
+          priority
+        >
+      </mat-option>
+    }
+  </mat-select>
+</mat-form-field>

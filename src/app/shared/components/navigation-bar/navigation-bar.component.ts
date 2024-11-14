@@ -11,11 +11,14 @@ import {OVERVIEW_SLUG, SKILLS_SLUG, TIMELINE_SLUG} from "../../../app.routes";
 import {Observable} from "rxjs";
 import {map} from "rxjs/operators";
 import {PushPipe} from '@ngrx/component';
+import {LanguageSwitcherComponent} from "./language-switcher/language-switcher.component";
+import {TranslocoDirective} from "@jsverse/transloco";
 
 @Component({
   selector: 'app-navigation-bar',
   standalone: true,
   imports: [
+    LanguageSwitcherComponent,
     MatButton,
     MatIconButton,
     MatMenu,
@@ -25,6 +28,7 @@ import {PushPipe} from '@ngrx/component';
     NgIcon,
     PushPipe,
     RouterLink,
+    TranslocoDirective
   ],
   templateUrl: './navigation-bar.component.html',
   styleUrl: './navigation-bar.component.scss',

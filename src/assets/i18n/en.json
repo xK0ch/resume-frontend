@@ -1,0 +1,16 @@
+{
+  "language": "Language",
+  "navigation": {
+    "timeline": "Timeline",
+    "skills": "Skills",
+    "overview": "Overview"
+  },
+  "overview": {
+    "address": "Address",
+    "birthday": "Birthday",
+    "description": "Description",
+    "mail": "E-Mail",
+    "mobile": "Mobile",
+    "phone": "Phone"
+  }
+}

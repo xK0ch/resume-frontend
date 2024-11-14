@@ -1,17 +1,21 @@
-<mat-toolbar color="primary" class="navbar">
+<mat-toolbar
+  *transloco="let t; read: 'navigation'"
+  color="primary"
+  class="navbar"
+>
   @if (!(isSmallScreen$ | ngrxPush)) {
     <div class="nav-links">
       <button mat-button [routerLink]="OVERVIEW_SLUG">
         <ng-icon name="ionPerson" class="icon"></ng-icon>
-        Übersicht
+        {{ t('overview') }}
       </button>
       <button mat-button [routerLink]="SKILLS_SLUG">
         <ng-icon name="ionBulb" class="icon"></ng-icon>
-        Skills
+        {{ t('skills') }}
       </button>
       <button mat-button [routerLink]="TIMELINE_SLUG">
         <ng-icon name="ionGitCommit" class="icon"></ng-icon>
-        Lebenslauf
+        {{ t('timeline') }}
       </button>
     </div>
   }
@@ -22,12 +26,13 @@
     </button>
   }
   <mat-menu #menu="matMenu">
-    <button mat-menu-item [routerLink]="OVERVIEW_SLUG">Übersicht</button>
-    <button mat-menu-item [routerLink]="SKILLS_SLUG">Skills</button>
-    <button mat-menu-item [routerLink]="TIMELINE_SLUG">Lebenslauf</button>
+    <button mat-menu-item [routerLink]="OVERVIEW_SLUG">{{ t('overview') }}</button>
+    <button mat-menu-item [routerLink]="SKILLS_SLUG">{{ t('skills') }}</button>
+    <button mat-menu-item [routerLink]="TIMELINE_SLUG">{{ t('timeline') }}</button>
   </mat-menu>
 
   <span class="spacer"></span>
+  <app-language-switcher></app-language-switcher>
   @if (resumeStore.activeResume()?.github) {
     <button mat-icon-button aria-label="GitHub" (click)="openExternalLink(resumeStore.activeResume()?.github)">
       <ng-icon name="ionLogoGithub" class="icon"></ng-icon>

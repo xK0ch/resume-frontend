@@ -1,5 +1,9 @@
 @if (!resumeStore.isLoading()) {
-  <div class="overview" [@fadeIn]>
+  <div
+    [@fadeIn]
+    class="overview"
+    *transloco="let t; read: 'overview'"
+    >
     <div class="header">
       <div class="profile-picture">
         <img
@@ -17,17 +21,18 @@
     </div>
 
     <div class="basic-info">
-      <p><strong>Adresse:</strong> {{ resumeStore.activeResume()?.address }}
-        , {{ resumeStore.activeResume()?.postalCode }}
-        {{ resumeStore.activeResume()?.city }}, {{ resumeStore.activeResume()?.country }}</p>
-      <p><strong>Geburtstag:</strong> {{ resumeStore.activeResume()?.dateOfBirth | dateFormat }}</p>
-      <p><strong>E-Mail:</strong> {{ resumeStore.activeResume()?.email }}</p>
-      <p><strong>Mobilfunk:</strong> {{ resumeStore.activeResume()?.mobileNumber | defaultValue }}</p>
-      <p><strong>Festnetz:</strong> {{ resumeStore.activeResume()?.phoneNumber | defaultValue }}</p>
+      <p><strong>{{ t('address') }}:</strong> {{ resumeStore.activeResume()?.address }}
+        , {{ resumeStore.activeResume()?.postalCode }}{{ resumeStore.activeResume()?.city }},
+        {{ resumeStore.activeResume()?.country }}
+      </p>
+      <p><strong>{{ t('birthday') }}:</strong> {{ resumeStore.activeResume()?.dateOfBirth | dateFormat }}</p>
+      <p><strong>{{ t('mail') }}:</strong> {{ resumeStore.activeResume()?.email }}</p>
+      <p><strong>{{ t('mobile') }}:</strong> {{ resumeStore.activeResume()?.mobileNumber | defaultValue }}</p>
+      <p><strong>{{ t('phone') }}:</strong> {{ resumeStore.activeResume()?.phoneNumber | defaultValue }}</p>
     </div>
 
     <div class="description">
-      <h2>Beschreibung</h2>
+      <h2>{{ t('description') }}</h2>
       <p [innerHtml]="resumeStore.activeResume()?.description"></p>
     </div>
   </div>

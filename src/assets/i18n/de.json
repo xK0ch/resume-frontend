@@ -1,0 +1,16 @@
+{
+  "language": "Sprache",
+  "navigation": {
+    "timeline": "Lebenslauf",
+    "skills": "Fähigkeiten",
+    "overview": "Übersicht"
+  },
+  "overview": {
+    "address": "Adresse",
+    "birthday": "Geburtstag",
+    "description": "Beschreibung",
+    "mail": "E-Mail",
+    "mobile": "Mobilfunk",
+    "phone": "Festnetz"
+  }
+}
