@@ -2,6 +2,7 @@ import {Routes} from '@angular/router';
 import {OverviewComponent} from "./pages/overview/overview.component";
 import {SkillsComponent} from "./pages/skills/skills.component";
 import {TimelineComponent} from "./pages/timeline/timeline.component";
+import {PageNotFoundComponent} from "./shared/components/page-not-found/page-not-found.component";
 
 export const OVERVIEW_SLUG = 'overview';
 export const SKILLS_SLUG = 'skills';
@@ -24,5 +25,9 @@ export const routes: Routes = [
   {
     path: TIMELINE_SLUG,
     component: TimelineComponent,
+  },
+  {
+    path: '**',
+    component: PageNotFoundComponent,
   },
 ];
