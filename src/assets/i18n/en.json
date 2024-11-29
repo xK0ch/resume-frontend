@@ -13,6 +13,30 @@
     "mobile": "Mobile",
     "phone": "Phone"
   },
+  "skills": {
+    "filter": {
+      "noResults": "No results could be found for \"{{input}}\"",
+      "placeholder": "e.g. Java",
+      "title": "Filter"
+    },
+    "paginator": {
+      "itemsPerPageLabel": "Items per page:",
+      "of": "of"
+    },
+    "skillCategory": {
+      "CI_CD": "CI/CD",
+      "CLOUD": "Cloud",
+      "FRAMEWORK": "Framework",
+      "OPERATING_SYSTEM": "Operating system",
+      "OTHER": "Other",
+      "PROGRAMMING_LANGUAGE": "Programming language"
+    },
+    "table": {
+      "category": "Category",
+      "level": "Skill level",
+      "skill": "Skill"
+    }
+  },
   "timeline": {
     "construction": "This page is under construction"
   }

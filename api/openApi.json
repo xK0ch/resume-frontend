@@ -89,11 +89,8 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
+          "404": {
+            "description": "If no resume has been found for the given id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -102,8 +99,8 @@
               }
             }
           },
-          "404": {
-            "description": "If no resume has been found for the given id.",
+          "412": {
+            "description": "If the entity has been modified since.",
             "content": {
               "application/json": {
                 "schema": {
@@ -121,6 +118,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -156,8 +156,15 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -169,15 +176,8 @@
               }
             }
           },
-          "404": {
-            "description": "If no resume has been found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "204": {
             "description": "If the resume has been deleted successfully."
@@ -237,19 +237,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "404": {
-            "description": "If no resume or skill was found for the given ids.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
@@ -269,6 +256,19 @@
                 }
               }
             }
+          },
+          "404": {
+            "description": "If no resume or skill was found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -313,18 +313,8 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "404": {
-            "description": "If no resume or skill has been found for the given ids.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "204": {
+            "description": "If the skill has been deleted successfully."
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -336,8 +326,18 @@
               }
             }
           },
-          "204": {
-            "description": "If the skill has been deleted successfully."
+          "404": {
+            "description": "If no resume or skill has been found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -387,9 +387,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "201": {
             "description": "If the resume has been created successfully.",
             "content": {
@@ -399,6 +396,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -480,9 +480,6 @@
           "required": true
         },
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
           "404": {
             "description": "If no resume was found for the given id.",
             "content": {
@@ -502,6 +499,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -539,11 +539,8 @@
           }
         ],
         "responses": {
-          "401": {
-            "description": "If the user is not authorized to access this resource."
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
+          "404": {
+            "description": "If no resume has been found for the given id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -552,8 +549,8 @@
               }
             }
           },
-          "404": {
-            "description": "If no resume has been found for the given id.",
+          "412": {
+            "description": "If the entity has been modified since.",
             "content": {
               "application/json": {
                 "schema": {
@@ -571,6 +568,9 @@
                 }
               }
             }
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -786,12 +786,24 @@
       "SkillUpdateOrder": {
         "required": [
           "name",
+          "skillCategory",
           "skillLevel"
         ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
+          },
+          "skillCategory": {
+            "type": "string",
+            "enum": [
+              "CI_CD",
+              "CLOUD",
+              "FRAMEWORK",
+              "OPERATING_SYSTEM",
+              "OTHER",
+              "PROGRAMMING_LANGUAGE"
+            ]
           },
           "skillLevel": {
             "type": "string",
@@ -810,6 +822,7 @@
           "id",
           "lastModifiedAt",
           "name",
+          "skillCategory",
           "skillLevel"
         ],
         "type": "object",
@@ -829,6 +842,24 @@
           "name": {
             "type": "string",
             "description": "Name of the skill"
+          },
+          "skillCategory": {
+            "type": "string",
+            "description": "Category of the skill",
+            "enum": [
+              "CI_CD",
+              "CLOUD",
+              "FRAMEWORK",
+              "OPERATING_SYSTEM",
+              "OTHER",
+              "PROGRAMMING_LANGUAGE",
+              "CI_CD",
+              "CLOUD",
+              "FRAMEWORK",
+              "OPERATING_SYSTEM",
+              "OTHER",
+              "PROGRAMMING_LANGUAGE"
+            ]
           },
           "skillLevel": {
             "type": "string",
@@ -915,12 +946,24 @@
       "SkillCreateOrder": {
         "required": [
           "name",
+          "skillCategory",
           "skillLevel"
         ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
+          },
+          "skillCategory": {
+            "type": "string",
+            "enum": [
+              "CI_CD",
+              "CLOUD",
+              "FRAMEWORK",
+              "OPERATING_SYSTEM",
+              "OTHER",
+              "PROGRAMMING_LANGUAGE"
+            ]
           },
           "skillLevel": {
             "type": "string",

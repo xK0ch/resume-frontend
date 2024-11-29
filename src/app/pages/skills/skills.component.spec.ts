@@ -2,6 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SkillsComponent} from './skills.component';
 import {provideHttpClient} from "@angular/common/http";
 import {provideHttpClientTesting} from "@angular/common/http/testing";
+import {getTranslocoModule} from "../../transloco-testing.module";
 
 describe('SkillsComponent', () => {
   let component: SkillsComponent;
@@ -9,7 +10,10 @@ describe('SkillsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [SkillsComponent],
+      imports: [
+        getTranslocoModule(),
+        SkillsComponent
+      ],
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),

@@ -13,6 +13,30 @@
     "mobile": "Mobilfunk",
     "phone": "Festnetz"
   },
+  "skills": {
+    "filter": {
+      "noResults": "Es konnten keine Ergebnisse für \"{{input}}\" gefunden werden",
+      "placeholder": "z.B. Java",
+      "title": "Filter"
+    },
+    "paginator": {
+      "itemsPerPageLabel": "Einträge pro Seite:",
+      "of": "von"
+    },
+    "skillCategory": {
+      "CI_CD": "CI/CD",
+      "CLOUD": "Cloud",
+      "FRAMEWORK": "Framework",
+      "OPERATING_SYSTEM": "Betriebssystem",
+      "OTHER": "Sonstiges",
+      "PROGRAMMING_LANGUAGE": "Programmiersprache"
+    },
+    "table": {
+      "category": "Kategorie",
+      "level": "Fähigkeitsniveau",
+      "skill": "Fähigkeit"
+    }
+  },
   "timeline": {
     "construction": "Diese Seite befindet sich noch im Aufbau"
   }

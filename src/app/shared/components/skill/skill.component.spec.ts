@@ -11,7 +11,8 @@ describe('SkillComponent', () => {
     id: '1',
     lastModifiedAt: '2024-10-31T12:00:00Z',
     name: 'Angular Development',
-    skillLevel: 'EXPERT'
+    skillLevel: 'EXPERT',
+    skillCategory: 'OTHER'
   };
 
   beforeEach(async () => {
