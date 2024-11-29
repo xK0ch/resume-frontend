@@ -12,5 +12,8 @@
     "mail": "E-Mail",
     "mobile": "Mobilfunk",
     "phone": "Festnetz"
+  },
+  "timeline": {
+    "construction": "Diese Seite befindet sich noch im Aufbau"
   }
 }

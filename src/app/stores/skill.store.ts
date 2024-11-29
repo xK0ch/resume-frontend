@@ -21,13 +21,13 @@ export const SkillStore = signalStore(
   withState<SkillState>(initialState),
   withMethods((
     store,
-    skillService = inject(SkillsService),
+    skillService = inject(SkillsService)
   ) => ({
     loadSkills: rxMethod<void>(
       pipe(
         tap(() => patchState(store, {isLoading: true})),
         switchMap(() => {
-          return skillService.getAllByResume({resumeId: 'adb48270-e93b-4fc4-9de0-23fcb5427624'}).pipe(
+          return skillService.getAllByResume({resumeId: '9ed3c8de-4bbc-452d-83b1-ee3ccec3c56b'}).pipe(
             tapResponse({
               next: (skills) => patchState(store, {
                 skills,

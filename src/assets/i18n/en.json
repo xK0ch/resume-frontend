@@ -12,5 +12,8 @@
     "mail": "E-Mail",
     "mobile": "Mobile",
     "phone": "Phone"
+  },
+  "timeline": {
+    "construction": "This page is under construction"
   }
 }

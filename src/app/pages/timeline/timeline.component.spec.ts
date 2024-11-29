@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { TimelineComponent } from './timeline.component';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {TimelineComponent} from './timeline.component';
+import {getTranslocoModule} from "../../transloco-testing.module";
 
 describe('TimelineComponent', () => {
   let component: TimelineComponent;
@@ -8,9 +8,13 @@ describe('TimelineComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TimelineComponent]
+      imports: [
+        getTranslocoModule(),
+        TimelineComponent,
+      ],
+      providers: []
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(TimelineComponent);
     component = fixture.componentInstance;
