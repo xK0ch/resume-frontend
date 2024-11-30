@@ -27,7 +27,7 @@ export const SkillStore = signalStore(
       pipe(
         tap(() => patchState(store, {isLoading: true})),
         switchMap(() => {
-          return skillService.getAllByResume({resumeId: '9ed3c8de-4bbc-452d-83b1-ee3ccec3c56b'}).pipe(
+          return skillService.getAllByResume({resumeId: '31bd2cbd-ded4-45ae-9812-bcf4e31ec5fa'}).pipe(
             tapResponse({
               next: (skills) => patchState(store, {
                 skills,

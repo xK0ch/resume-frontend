@@ -1,14 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {SkillView} from "../../../../../api/src/models/skill-view";
 import {MatProgressBar} from "@angular/material/progress-bar";
-import {TitleCasePipe} from "@angular/common";
+import {TranslocoDirective} from "@jsverse/transloco";
 
 @Component({
   selector: 'app-skill',
   standalone: true,
   imports: [
     MatProgressBar,
-    TitleCasePipe
+    TranslocoDirective
   ],
   templateUrl: './skill.component.html',
   styleUrl: './skill.component.scss'

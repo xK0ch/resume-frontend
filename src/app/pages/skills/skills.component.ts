@@ -9,6 +9,7 @@ import {MatPaginator, MatPaginatorIntl, MatPaginatorModule} from "@angular/mater
 import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {CustomMatPaginatorIntlService} from "../../shared/services/custom-mat-paginator-intl.service";
 import {TranslocoDirective} from "@jsverse/transloco";
+import {SkillComponent} from "./skill/skill.component";
 
 @Component({
   selector: 'app-skills',
@@ -20,7 +21,8 @@ import {TranslocoDirective} from "@jsverse/transloco";
     MatProgressSpinner,
     MatSortModule,
     MatTableModule,
-    TranslocoDirective
+    SkillComponent,
+    TranslocoDirective,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
@@ -32,7 +34,7 @@ export class SkillsComponent {
 
   skillStore = inject(SkillStore);
 
-  displayedColumns: Array<string> = ['name', 'skillCategory'];
+  displayedColumns: Array<string> = ['name', 'skillCategory', 'skillLevel'];
   dataSource: MatTableDataSource<SkillView> = new MatTableDataSource(this.skillStore.skills());
 
   @ViewChild(MatPaginator, {static: false}) set paginator(paginator: MatPaginator) {

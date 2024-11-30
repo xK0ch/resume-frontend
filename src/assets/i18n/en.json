@@ -31,6 +31,13 @@
       "OTHER": "Other",
       "PROGRAMMING_LANGUAGE": "Programming language"
     },
+    "skillLevel": {
+      "NOVICE": "Novice",
+      "ADVANCED_BEGINNER": "Advanced beginner",
+      "INTERMEDIATE": "Intermediate",
+      "ADVANCED": "Advanced",
+      "EXPERT": "Expert"
+    },
     "table": {
       "category": "Category",
       "level": "Skill level",

@@ -31,6 +31,13 @@
       "OTHER": "Sonstiges",
       "PROGRAMMING_LANGUAGE": "Programmiersprache"
     },
+    "skillLevel": {
+      "NOVICE": "Anfänger",
+      "ADVANCED_BEGINNER": "Fortgeschrittener Anfänger",
+      "INTERMEDIATE": "Intermediate",
+      "ADVANCED": "Fortgeschritten",
+      "EXPERT": "Experte"
+    },
     "table": {
       "category": "Kategorie",
       "level": "Fähigkeitsniveau",

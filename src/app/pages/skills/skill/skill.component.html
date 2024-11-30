@@ -1,0 +1,8 @@
+<ng-container *transloco="let t">
+  <span class="skill-level">{{ t('skills.skillLevel.' + skill.skillLevel) }}</span>
+  <mat-progress-bar
+    class="skill-progress"
+    mode="determinate"
+    [value]="skillProgress"
+  ></mat-progress-bar>
+</ng-container>

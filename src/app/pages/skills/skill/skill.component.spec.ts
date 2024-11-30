@@ -2,6 +2,7 @@ import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {SkillComponent} from './skill.component';
 import {SkillView} from "../../../../../api/src/models/skill-view";
 import {MatProgressBarModule} from "@angular/material/progress-bar";
+import {getTranslocoModule} from "../../../transloco-testing.module";
 
 describe('SkillComponent', () => {
   let component: SkillComponent;
@@ -10,14 +11,17 @@ describe('SkillComponent', () => {
   const mockSkill: SkillView = {
     id: '1',
     lastModifiedAt: '2024-10-31T12:00:00Z',
-    name: 'Angular Development',
+    name: 'Angular',
     skillLevel: 'EXPERT',
     skillCategory: 'OTHER'
   };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MatProgressBarModule],
+      imports: [
+        getTranslocoModule(),
+        MatProgressBarModule
+      ],
     }).compileComponents();
   });
 
