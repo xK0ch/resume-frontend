@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 .skill-level {
   font-size: 0.9rem;
   color: #555;
@@ -6,4 +8,35 @@
 .skill-progress {
   height: 15px;
   border-radius: 4px;
+
+  &.skill-progress-novice {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #f44336,
+    ));
+  }
+
+  &.skill-progress-advanced-beginner {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #ff9800,
+    ));
+  }
+
+  &.skill-progress-intermediate {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #ffeb3b,
+    ));
+  }
+
+  &.skill-progress-advanced {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #8bc34a,
+    ));
+  }
+
+  &.skill-progress-expert {
+    @include mat.progress-bar-overrides((
+      active-indicator-color: #4caf50,
+    ));
+  }
 }
+

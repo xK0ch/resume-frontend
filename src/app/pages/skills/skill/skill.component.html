@@ -4,5 +4,6 @@
     class="skill-progress"
     mode="determinate"
     [value]="skillProgress"
+    [ngClass]="getSkillLevelClass(skill.skillLevel)"
   ></mat-progress-bar>
 </ng-container>
