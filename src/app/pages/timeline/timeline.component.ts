@@ -17,5 +17,4 @@ import {TranslocoDirective} from "@jsverse/transloco";
   ],
 })
 export class TimelineComponent {
-
 }

@@ -46,6 +46,20 @@ export class SkillsComponent {
   }
 
   constructor() {
+    this.dataSource = new MatTableDataSource(this.skillStore.skills());
+    this.dataSource.sortingDataAccessor = (row: SkillView, column: string) => {
+      if (column === 'skillLevel') {
+        const skillLevelMap: { [key in SkillView['skillLevel']]: number } = {
+          NOVICE: 20,
+          ADVANCED_BEGINNER: 40,
+          INTERMEDIATE: 60,
+          ADVANCED: 80,
+          EXPERT: 100,
+        };
+        return skillLevelMap[row.skillLevel];
+      }
+      return (row as any)[column];
+    };
     effect(() => {
       this.dataSource.data = this.skillStore.skills();
     });
