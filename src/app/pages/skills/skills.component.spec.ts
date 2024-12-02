@@ -3,6 +3,7 @@ import {SkillsComponent} from './skills.component';
 import {provideHttpClient} from "@angular/common/http";
 import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {getTranslocoModule} from "../../transloco-testing.module";
+import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 
 describe('SkillsComponent', () => {
   let component: SkillsComponent;
@@ -12,6 +13,7 @@ describe('SkillsComponent', () => {
     await TestBed.configureTestingModule({
       imports: [
         getTranslocoModule(),
+        NoopAnimationsModule,
         SkillsComponent
       ],
       providers: [
