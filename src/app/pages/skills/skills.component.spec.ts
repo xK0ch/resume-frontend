@@ -4,6 +4,7 @@ import {provideHttpClient} from "@angular/common/http";
 import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {getTranslocoModule} from "../../transloco-testing.module";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
+import {provideMockStore} from "@ngrx/store/testing";
 
 describe('SkillsComponent', () => {
   let component: SkillsComponent;
@@ -19,6 +20,7 @@ describe('SkillsComponent', () => {
       providers: [
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideMockStore({})
       ]
     })
       .compileComponents();

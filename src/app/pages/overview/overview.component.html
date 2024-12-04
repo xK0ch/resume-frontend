@@ -1,62 +1,66 @@
-@if (!resumeStore.isLoading()) {
-  <div
-    *transloco="let t; read: 'overview'"
-    class="overview"
-    [@fadeIn]
+@if (!(isLoading$ | ngrxPush)) {
+  <ng-container
+    *ngrxLet="activeResume$ as resume"
   >
-    <div class="header">
-      <div class="profile-picture">
-        <img
-          ngSrc="f.koch_social.jpg"
-          class="profile-picture"
-          alt="Profile picture of {{ resumeStore.activeResume()?.firstName }} {{ resumeStore.activeResume()?.lastName }}"
-          width="125"
-          height="125"
-          priority
-        />
-      </div>
-      <div class="info">
-        <h1>{{ resumeStore.activeResume()?.firstName }} {{ resumeStore.activeResume()?.lastName }}</h1>
-        <div class="social-buttons">
-          @if (resumeStore.activeResume()?.github) {
-            <button
-              mat-icon-button
-              class="github"
-              aria-label="GitHub"
-              (click)="openExternalLink(resumeStore.activeResume()?.github)"
-            >
-              <ng-icon name="ionLogoGithub" class="icon"></ng-icon>
-            </button>
-          }
-          @if (resumeStore.activeResume()?.linkedin) {
-            <button
-              mat-icon-button
-              class="linkedin"
-              aria-label="LinkedIn"
-              (click)="openExternalLink(resumeStore.activeResume()?.linkedin)"
-            >
-              <ng-icon name="ionLogoLinkedin" class="icon"></ng-icon>
-            </button>
-          }
+    <div
+      *transloco="let t; read: 'overview'"
+      class="overview"
+      [@fadeIn]
+    >
+      <div class="header">
+        <div class="profile-picture">
+          <img
+            ngSrc="f.koch_social.jpg"
+            class="profile-picture"
+            alt="Profile picture of {{ resume?.firstName }} {{ resume?.lastName }}"
+            width="125"
+            height="125"
+            priority
+          />
+        </div>
+        <div class="info">
+          <h1>{{ resume?.firstName }} {{ resume?.lastName }}</h1>
+          <div class="social-buttons">
+            @if (resume?.github) {
+              <button
+                mat-icon-button
+                class="github"
+                aria-label="GitHub"
+                (click)="openExternalLink(resume?.github)"
+              >
+                <ng-icon name="ionLogoGithub" class="icon"></ng-icon>
+              </button>
+            }
+            @if (resume?.linkedin) {
+              <button
+                mat-icon-button
+                class="linkedin"
+                aria-label="LinkedIn"
+                (click)="openExternalLink(resume?.linkedin)"
+              >
+                <ng-icon name="ionLogoLinkedin" class="icon"></ng-icon>
+              </button>
+            }
+          </div>
         </div>
       </div>
-    </div>
 
-    <div class="basic-info">
-      <p><strong>{{ t('address') }}:</strong> {{ resumeStore.activeResume()?.address }},
-        {{ resumeStore.activeResume()?.postalCode }} {{ resumeStore.activeResume()?.city }},
-        {{ resumeStore.activeResume()?.country }}</p>
-      <p><strong>{{ t('birthday') }}:</strong> {{ resumeStore.activeResume()?.dateOfBirth | dateFormat }}</p>
-      <p><strong>{{ t('mail') }}:</strong> {{ resumeStore.activeResume()?.email }}</p>
-      <p><strong>{{ t('mobile') }}:</strong> {{ resumeStore.activeResume()?.mobileNumber | defaultValue }}</p>
-      <p><strong>{{ t('phone') }}:</strong> {{ resumeStore.activeResume()?.phoneNumber | defaultValue }}</p>
-    </div>
+      <div class="basic-info">
+        <p><strong>{{ t('address') }}:</strong> {{ resume?.address }},
+          {{ resume?.postalCode }} {{ resume?.city }},
+          {{ resume?.country }}</p>
+        <p><strong>{{ t('birthday') }}:</strong> {{ resume?.dateOfBirth | dateFormat }}</p>
+        <p><strong>{{ t('mail') }}:</strong> {{ resume?.email }}</p>
+        <p><strong>{{ t('mobile') }}:</strong> {{ resume?.mobileNumber | defaultValue }}</p>
+        <p><strong>{{ t('phone') }}:</strong> {{ resume?.phoneNumber | defaultValue }}</p>
+      </div>
 
-    <div class="description">
-      <h2>{{ t('description') }}</h2>
-      <p [innerHtml]="resumeStore.activeResume()?.description"></p>
+      <div class="description">
+        <h2>{{ t('description') }}</h2>
+        <p [innerHtml]="resume?.description"></p>
+      </div>
     </div>
-  </div>
+  </ng-container>
 } @else {
   <mat-spinner></mat-spinner>
 }

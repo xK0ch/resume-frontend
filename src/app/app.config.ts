@@ -7,6 +7,14 @@ import {environment} from '../environments/environment';
 import {routes} from './app.routes';
 import {TranslocoHttpLoader} from './transloco-loader';
 import {provideTransloco} from '@jsverse/transloco';
+import {provideState, provideStore} from '@ngrx/store';
+import {provideEffects} from '@ngrx/effects';
+import {resumeFeature} from "./stores/resume-store/resume.reducer";
+import {ResumeEffects} from "./stores/resume-store/resume.effects";
+import {skillFeature} from "./stores/skill-store/skill.reducer";
+import {timelineEventFeature} from "./stores/timeline-event-store/timeline-event.reducer";
+import {SkillEffects} from "./stores/skill-store/skill.effects";
+import {TimelineEventEffects} from "./stores/timeline-event-store/timeline-event.effects";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -14,6 +22,11 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     provideRouter(routes),
+    provideStore(),
+    provideState(resumeFeature),
+    provideState(skillFeature),
+    provideState(timelineEventFeature),
+    provideEffects(ResumeEffects, SkillEffects, TimelineEventEffects),
     provideTransloco({
       config: {
         availableLangs: ['de', 'en'],
@@ -24,5 +37,6 @@ export const appConfig: ApplicationConfig = {
       loader: TranslocoHttpLoader
     }),
     provideZoneChangeDetection({eventCoalescing: true}),
+    provideEffects()
   ],
 };

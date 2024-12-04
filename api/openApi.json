@@ -30,22 +30,22 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "If no resume was found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
           "200": {
             "description": "If the resume has been loaded successfully.",
             "content": {
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/ResumeView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
                 }
               }
             }
@@ -89,15 +89,8 @@
           "required": true
         },
         "responses": {
-          "404": {
-            "description": "If no resume has been found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -119,8 +112,15 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -156,15 +156,8 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "If no resume has been found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "412": {
             "description": "If the entity has been modified since.",
@@ -176,11 +169,175 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
+          "404": {
+            "description": "If no resume has been found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           },
           "204": {
             "description": "If the resume has been deleted successfully."
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/resumes/{resumeId}/timeline-events/{timelineEventId}": {
+      "put": {
+        "tags": [
+          "Timeline events"
+        ],
+        "summary": "Update a timeline event of a resume",
+        "operationId": "update_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "timelineEventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimelineEventUpdateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "200": {
+            "description": "If the timeline event has been updated successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimelineEventView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume or timeline event was found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      },
+      "delete": {
+        "tags": [
+          "Timeline events"
+        ],
+        "summary": "Delete a timeline event of a resume",
+        "operationId": "delete_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "timelineEventId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "If-Modified-Since",
+            "in": "header",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "If the timeline vent has been deleted successfully."
+          },
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume or timeline event has been found for the given ids.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -196,7 +353,7 @@
           "Skills"
         ],
         "summary": "Update a skill of a resume",
-        "operationId": "update_1",
+        "operationId": "update_2",
         "parameters": [
           {
             "name": "resumeId",
@@ -237,6 +394,9 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "412": {
             "description": "If the entity has been modified since.",
             "content": {
@@ -266,9 +426,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -282,7 +439,7 @@
           "Skills"
         ],
         "summary": "Delete a skill of a resume",
-        "operationId": "delete_1",
+        "operationId": "delete_2",
         "parameters": [
           {
             "name": "resumeId",
@@ -313,19 +470,6 @@
           }
         ],
         "responses": {
-          "204": {
-            "description": "If the skill has been deleted successfully."
-          },
-          "412": {
-            "description": "If the entity has been modified since.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
-          },
           "404": {
             "description": "If no resume or skill has been found for the given ids.",
             "content": {
@@ -338,6 +482,19 @@
           },
           "401": {
             "description": "If the user is not authorized to access this resource."
+          },
+          "204": {
+            "description": "If the skill has been deleted successfully."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -387,6 +544,9 @@
           "required": true
         },
         "responses": {
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
           "201": {
             "description": "If the resume has been created successfully.",
             "content": {
@@ -396,9 +556,109 @@
                 }
               }
             }
+          }
+        },
+        "security": [
+          {
+            "basicAuth": []
+          }
+        ]
+      }
+    },
+    "/resumes/{resumeId}/timeline-events": {
+      "get": {
+        "tags": [
+          "Timeline events"
+        ],
+        "summary": "Get the timeline events of a resume",
+        "operationId": "getAllByResume",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "If the timeline events have been loaded successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TimelineEventView"
+                  }
+                }
+              }
+            }
           },
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Timeline events"
+        ],
+        "summary": "Create a timeline event for a resume",
+        "operationId": "create_1",
+        "parameters": [
+          {
+            "name": "resumeId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TimelineEventCreateOrder"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
           "401": {
             "description": "If the user is not authorized to access this resource."
+          },
+          "201": {
+            "description": "If the timeline event has been created successfully.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TimelineEventView"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -414,7 +674,7 @@
           "Skills"
         ],
         "summary": "Get all skills of a resume",
-        "operationId": "getAllByResume",
+        "operationId": "getAllByResume_1",
         "parameters": [
           {
             "name": "resumeId",
@@ -457,7 +717,7 @@
           "Skills"
         ],
         "summary": "Create a skill for a resume",
-        "operationId": "create_1",
+        "operationId": "create_2",
         "parameters": [
           {
             "name": "resumeId",
@@ -480,15 +740,8 @@
           "required": true
         },
         "responses": {
-          "404": {
-            "description": "If no resume was found for the given id.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/ProblemDetail"
-                }
-              }
-            }
+          "401": {
+            "description": "If the user is not authorized to access this resource."
           },
           "201": {
             "description": "If the skill has been created successfully.",
@@ -500,8 +753,15 @@
               }
             }
           },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
+          "404": {
+            "description": "If no resume was found for the given id.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ProblemDetail"
+                }
+              }
+            }
           }
         },
         "security": [
@@ -539,8 +799,11 @@
           }
         ],
         "responses": {
-          "404": {
-            "description": "If no resume has been found for the given id.",
+          "401": {
+            "description": "If the user is not authorized to access this resource."
+          },
+          "412": {
+            "description": "If the entity has been modified since.",
             "content": {
               "application/json": {
                 "schema": {
@@ -549,8 +812,8 @@
               }
             }
           },
-          "412": {
-            "description": "If the entity has been modified since.",
+          "404": {
+            "description": "If no resume has been found for the given id.",
             "content": {
               "application/json": {
                 "schema": {
@@ -568,9 +831,6 @@
                 }
               }
             }
-          },
-          "401": {
-            "description": "If the user is not authorized to access this resource."
           }
         },
         "security": [
@@ -783,6 +1043,72 @@
           }
         }
       },
+      "TimelineEventUpdateOrder": {
+        "required": [
+          "dateOfEvent",
+          "description",
+          "institution",
+          "jobPosition"
+        ],
+        "type": "object",
+        "properties": {
+          "jobPosition": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dateOfEvent": {
+            "type": "string",
+            "format": "date"
+          }
+        }
+      },
+      "TimelineEventView": {
+        "required": [
+          "dateOfEvent",
+          "description",
+          "id",
+          "institution",
+          "jobPosition",
+          "lastModifiedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "The unique identifier of the entity",
+            "format": "uuid",
+            "example": "123e4567-e89b-12d3-a456-426614174000"
+          },
+          "lastModifiedAt": {
+            "type": "string",
+            "description": "The timestamp the entity has last been modified",
+            "format": "date-time",
+            "example": "2024-12-05T10:40:51.123456+02:00"
+          },
+          "jobPosition": {
+            "type": "string",
+            "description": "Name of the job position"
+          },
+          "institution": {
+            "type": "string",
+            "description": "Name of the institution"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description of the job position"
+          },
+          "dateOfEvent": {
+            "type": "string",
+            "description": "Date of the event",
+            "format": "date"
+          }
+        }
+      },
       "SkillUpdateOrder": {
         "required": [
           "name",
@@ -940,6 +1266,30 @@
           },
           "github": {
             "type": "string"
+          }
+        }
+      },
+      "TimelineEventCreateOrder": {
+        "required": [
+          "dateOfEvent",
+          "description",
+          "institution",
+          "jobPosition"
+        ],
+        "type": "object",
+        "properties": {
+          "jobPosition": {
+            "type": "string"
+          },
+          "institution": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "dateOfEvent": {
+            "type": "string",
+            "format": "date"
           }
         }
       },

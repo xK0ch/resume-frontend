@@ -3,6 +3,7 @@ import {OverviewComponent} from './overview.component';
 import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {provideHttpClient} from "@angular/common/http";
 import {provideHttpClientTesting} from "@angular/common/http/testing";
+import {provideMockStore} from "@ngrx/store/testing";
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -15,6 +16,7 @@ describe('OverviewComponent', () => {
         provideAnimationsAsync(),
         provideHttpClient(),
         provideHttpClientTesting(),
+        provideMockStore({})
       ]
     })
       .compileComponents();

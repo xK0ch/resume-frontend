@@ -1,5 +1,4 @@
 import {Component, effect, inject, ViewChild} from '@angular/core';
-import {SkillStore} from "../../stores/skill.store";
 import {MatFormFieldModule} from "@angular/material/form-field";
 import {MatInputModule} from "@angular/material/input";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
@@ -10,6 +9,11 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 import {CustomMatPaginatorIntlService} from "../../shared/services/custom-mat-paginator-intl.service";
 import {TranslocoDirective} from "@jsverse/transloco";
 import {SkillComponent} from "./skill/skill.component";
+import {Store} from "@ngrx/store";
+import {selectIsLoading, selectSkills} from "../../stores/skill-store/skill.reducer";
+import {PushPipe} from "@ngrx/component";
+import {Observable} from "rxjs";
+import {map} from "rxjs/operators";
 
 @Component({
   selector: 'app-skills',
@@ -23,6 +27,7 @@ import {SkillComponent} from "./skill/skill.component";
     MatTableModule,
     SkillComponent,
     TranslocoDirective,
+    PushPipe,
   ],
   templateUrl: './skills.component.html',
   styleUrl: './skills.component.scss',
@@ -32,21 +37,29 @@ import {SkillComponent} from "./skill/skill.component";
 })
 export class SkillsComponent {
 
-  skillStore = inject(SkillStore);
+  #store = inject(Store);
 
   displayedColumns: Array<string> = ['name', 'skillCategory', 'skillLevel'];
-  dataSource: MatTableDataSource<SkillView> = new MatTableDataSource(this.skillStore.skills());
+  dataSource = new MatTableDataSource<SkillView>([]);
 
-  @ViewChild(MatPaginator, {static: false}) set paginator(paginator: MatPaginator) {
+  skills$: Observable<SkillView[]> = this.#store.select(selectSkills);
+  isLoading$: Observable<boolean> = this.#store.select(selectIsLoading);
+
+  @ViewChild(MatPaginator, { static: false }) set paginator(paginator: MatPaginator) {
     this.dataSource.paginator = paginator;
   }
 
-  @ViewChild(MatSort, {static: false}) set sort(sort: MatSort) {
+  @ViewChild(MatSort, { static: false }) set sort(sort: MatSort) {
     this.dataSource.sort = sort;
   }
 
   constructor() {
-    this.dataSource = new MatTableDataSource(this.skillStore.skills());
+    this.skills$.pipe(
+      map((skills) => {
+        this.dataSource.data = skills;
+      })
+    ).subscribe();
+
     this.dataSource.sortingDataAccessor = (row: SkillView, column: string) => {
       if (column === 'skillLevel') {
         const skillLevelMap: { [key in SkillView['skillLevel']]: number } = {
@@ -60,9 +73,6 @@ export class SkillsComponent {
       }
       return (row as any)[column];
     };
-    effect(() => {
-      this.dataSource.data = this.skillStore.skills();
-    });
   }
 
   applyFilter(event: Event) {

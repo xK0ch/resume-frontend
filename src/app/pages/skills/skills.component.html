@@ -1,4 +1,4 @@
-@if (!skillStore.isLoading()) {
+@if (!(isLoading$ | ngrxPush)) {
   <ng-container *transloco="let t; read: 'skills'">
     <mat-form-field>
       <mat-label>{{ t('filter.title') }}</mat-label>
