@@ -1,7 +1,26 @@
-<div
-  class="construction-container"
-  *transloco="let t; read: 'timeline'"
->
-  <ng-icon name="ionConstruct" class="icon"></ng-icon>
-  <p class="construction-text">{{ t('construction') }}</p>
-</div>
+@if (!(isLoading$ | ngrxPush)) {
+  <ngx-timeline
+    [events]="(timelineEvents$ | ngrxPush) ?? []"
+    [ngClass]="'timeline'"
+    [groupEvent]="eventGroup"
+    [reverseOrder]="true"
+    [dateInstantCustomTemplate]="dateInstantCustomTemplate"
+    [innerEventCustomTemplate]="innerEventCustomTemplate"
+  ></ngx-timeline>
+
+  <ng-template #dateInstantCustomTemplate let-item=item>
+    <span>
+      {{ item?.timestamp | dateMmYyyy }}
+    </span>
+  </ng-template>
+
+  <ng-template #innerEventCustomTemplate let-event="event">
+    <div class="event-card">
+      <h3 class="event-title">{{ event?.eventInfo?.title }}</h3>
+      <h4 class="event-subtitle">{{ event?.eventInfo?.id }}</h4>
+      <p class="event-description">{{ event?.eventInfo?.description }}</p>
+    </div>
+  </ng-template>
+} @else {
+  <mat-spinner></mat-spinner>
+}
