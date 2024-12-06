@@ -7,7 +7,7 @@ interface ResumeState {
   isLoading: boolean;
 }
 
-const initialState: ResumeState = {
+export const initialState: ResumeState = {
   resumes: [],
   isLoading: false,
 };

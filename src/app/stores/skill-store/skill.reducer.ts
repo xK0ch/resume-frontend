@@ -7,7 +7,7 @@ interface SkillState {
   isLoading: boolean;
 }
 
-const initialState: SkillState = {
+export const initialState: SkillState = {
   skills: [],
   isLoading: false,
 };
