@@ -1,11 +1,11 @@
 import {ComponentFixture, TestBed} from '@angular/core/testing';
 import {OverviewComponent} from './overview.component';
-import {provideAnimationsAsync} from "@angular/platform-browser/animations/async";
 import {provideHttpClient} from "@angular/common/http";
 import {provideHttpClientTesting} from "@angular/common/http/testing";
 import {provideMockStore} from "@ngrx/store/testing";
 import {Store} from '@ngrx/store';
 import {of} from 'rxjs';
+import {MOCK_RESUMES} from "../../shared/mocks/resume-mocks";
 
 describe('OverviewComponent', () => {
   let component: OverviewComponent;
@@ -16,7 +16,6 @@ describe('OverviewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [OverviewComponent],
       providers: [
-        provideAnimationsAsync(),
         provideHttpClient(),
         provideHttpClientTesting(),
         provideMockStore({})
@@ -35,19 +34,18 @@ describe('OverviewComponent', () => {
   });
 
   it('should get active resume from the store', () => {
-    const mockResume = {name: 'Test Resume'};
     store.dispatch = jest.fn();
-    const spy = jest.spyOn(store, 'select').mockReturnValue(of(mockResume));
+    jest.spyOn(store, 'select').mockReturnValue(of(MOCK_RESUMES[0]));
 
     component.activeResume$.subscribe(resume => {
-      expect(resume).toEqual(mockResume);
+      expect(resume).toEqual(MOCK_RESUMES[0]);
     });
     fixture.detectChanges();
   });
 
   it('should get loading status from the store', () => {
     store.dispatch = jest.fn();
-    const spy = jest.spyOn(store, 'select').mockReturnValue(of(true));
+    jest.spyOn(store, 'select').mockReturnValue(of(true));
 
     component.isLoading$.subscribe(isLoading => {
       expect(isLoading).toBeTruthy();

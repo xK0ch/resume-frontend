@@ -1,5 +1,4 @@
 import {Component, inject} from '@angular/core';
-import {animate, style, transition, trigger} from "@angular/animations";
 import {NgOptimizedImage} from "@angular/common";
 import {DefaultValuePipe} from "../../shared/pipes/default-value.pipe";
 import {DateFormatPipe} from "../../shared/pipes/date-format.pipe";
@@ -28,14 +27,6 @@ import {LetDirective, PushPipe} from "@ngrx/component";
   ],
   templateUrl: './overview.component.html',
   styleUrl: './overview.component.scss',
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({opacity: 0}),
-        animate('1.5s ease-in', style({opacity: 1})),
-      ]),
-    ]),
-  ],
   viewProviders: [
     provideIcons({
       ionLogoGithub,
