@@ -3,7 +3,6 @@
     [events]="(timelineEvents$ | ngrxPush) ?? []"
     [ngClass]="'timeline'"
     [groupEvent]="eventGroup"
-    [reverseOrder]="true"
     [dateInstantCustomTemplate]="dateInstantCustomTemplate"
     [innerEventCustomTemplate]="innerEventCustomTemplate"
   ></ngx-timeline>
