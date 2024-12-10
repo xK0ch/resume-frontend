@@ -51,6 +51,17 @@ describe('LanguageSwitcherComponent', () => {
     expect(component.languages).toEqual(availableLangs);
   });
 
+  it('should update currentLang and call TranslocoService.setActiveLang when onChange is called', () => {
+    const newLang = 'en';
+    const setActiveLangSpy = jest.spyOn(translocoService, 'setActiveLang');
+
+    component.onChange(newLang);
+
+    expect(setActiveLangSpy).toHaveBeenCalledWith(newLang);
+    expect(component.currentLang).toBe(newLang);
+  });
+
+
   it('should get flag URL correctly', () => {
     const flagUrl = component.getFlagUrl('de');
     expect(flagUrl).toBe('http://purecatamphetamine.github.io/country-flag-icons/3x2/DE.svg');

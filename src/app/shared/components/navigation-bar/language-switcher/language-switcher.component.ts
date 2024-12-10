@@ -21,6 +21,7 @@ import {NgOptimizedImage} from "@angular/common";
   styleUrl: './language-switcher.component.scss',
 })
 export class LanguageSwitcherComponent {
+
   currentLang: string;
   languages: string[];
 
@@ -31,13 +32,7 @@ export class LanguageSwitcherComponent {
 
   constructor(private translocoService: TranslocoService) {
     this.currentLang = this.translocoService.getDefaultLang();
-    const availableLangs = this.translocoService.getAvailableLangs();
-
-    if (Array.isArray(availableLangs) && typeof availableLangs[0] === 'string') {
-      this.languages = availableLangs as string[];
-    } else {
-      this.languages = (availableLangs as { id: string; label: string }[]).map(lang => lang.id);
-    }
+    this.languages = this.translocoService.getAvailableLangs() as string[];
   }
 
   onChange(langCode: string): void {
