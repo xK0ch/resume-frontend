@@ -19,6 +19,7 @@ describe('Resume Reducer', () => {
 
     expect(state.resumes).toEqual(MOCK_RESUMES);
     expect(state.isLoading).toBe(false);
+    expect(state.loaded).toBe(true);
   });
 
   it('should set isLoading to false when "loadingFailed" action is dispatched', () => {

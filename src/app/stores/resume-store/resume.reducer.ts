@@ -4,11 +4,13 @@ import {ResumeActions} from "./resume.actions";
 
 interface ResumeState {
   resumes: ResumeView[];
+  loaded: boolean,
   isLoading: boolean;
 }
 
 export const initialState: ResumeState = {
   resumes: [],
+  loaded: false,
   isLoading: false,
 };
 
@@ -23,6 +25,7 @@ export const resumeFeature = createFeature({
     on(ResumeActions.loadingSuccessful, (state, {resumes}) => ({
       ...state,
       resumes,
+      loaded: true,
       isLoading: false,
     })),
     on(ResumeActions.loadingFailed, (state) => ({
@@ -44,5 +47,6 @@ export const {
   name,
   reducer,
   selectIsLoading,
+  selectLoaded,
   selectActiveResume,
 } = resumeFeature;
