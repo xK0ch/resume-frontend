@@ -7,22 +7,22 @@ describe('Skill Reducer', () => {
     expect(reducer(undefined, {type: 'unknown'})).toEqual(initialState);
   });
 
-  it('should set isLoading to true when "triggered" action is dispatched', () => {
-    const action = SkillActions.triggered();
+  it('should set isLoading to true when "loadingTriggered" action is dispatched', () => {
+    const action = SkillActions.loadingTriggered();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(true);
   });
 
-  it('should update skills and set isLoading to false when "loaded" action is dispatched', () => {
-    const action = SkillActions.loaded({skills: MOCK_SKILLS});
+  it('should update skills and set isLoading to false when "loadingSuccessful" action is dispatched', () => {
+    const action = SkillActions.loadingSuccessful({skills: MOCK_SKILLS});
     const state = reducer(initialState, action);
 
     expect(state.skills).toEqual(MOCK_SKILLS);
     expect(state.isLoading).toBe(false);
   });
 
-  it('should set isLoading to false when "failed" action is dispatched', () => {
-    const action = SkillActions.failed();
+  it('should set isLoading to false when "loadingFailed" action is dispatched', () => {
+    const action = SkillActions.loadingFailed();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(false);
   });

@@ -17,16 +17,16 @@ export const timelineEventFeature = createFeature({
   name: 'timelineEvent',
   reducer: createReducer(
     initialState,
-    on(TimelineEventActions.triggered, (state) => ({
+    on(TimelineEventActions.loadingTriggered, (state) => ({
       ...state,
       isLoading: true,
     })),
-    on(TimelineEventActions.loaded, (state, {timelineEvents}) => ({
+    on(TimelineEventActions.loadingSuccessful, (state, {timelineEvents}) => ({
       ...state,
       timelineEvents,
       isLoading: false,
     })),
-    on(TimelineEventActions.failed, (state) => ({
+    on(TimelineEventActions.loadingFailed, (state) => ({
       ...state,
       isLoading: false,
     }))
@@ -51,8 +51,6 @@ export const timelineEventFeature = createFeature({
 export const {
   name,
   reducer,
-  selectTimelineEventState,
-  selectTimelineEvents,
   selectIsLoading,
   selectEvents,
 } = timelineEventFeature;

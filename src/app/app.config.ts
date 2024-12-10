@@ -15,6 +15,8 @@ import {skillFeature} from "./stores/skill-store/skill.reducer";
 import {timelineEventFeature} from "./stores/timeline-event-store/timeline-event.reducer";
 import {SkillEffects} from "./stores/skill-store/skill.effects";
 import {TimelineEventEffects} from "./stores/timeline-event-store/timeline-event.effects";
+import {RoutingEffects} from "./stores/routing-store/routing.effects";
+import {provideRouterStore} from "@ngrx/router-store";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -22,11 +24,12 @@ export const appConfig: ApplicationConfig = {
     provideAnimationsAsync(),
     provideHttpClient(),
     provideRouter(routes),
+    provideRouterStore(),
     provideStore(),
     provideState(resumeFeature),
     provideState(skillFeature),
     provideState(timelineEventFeature),
-    provideEffects(ResumeEffects, SkillEffects, TimelineEventEffects),
+    provideEffects(ResumeEffects, SkillEffects, TimelineEventEffects, RoutingEffects),
     provideTransloco({
       config: {
         availableLangs: ['de', 'en'],

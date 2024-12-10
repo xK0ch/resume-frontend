@@ -19,23 +19,23 @@ export class TimelineEventEffects {
 
   loadTimelineEvents$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(TimelineEventActions.triggered),
+      ofType(TimelineEventActions.loadingTriggered),
       withLatestFrom(this.activeResume$),
       exhaustMap(([, activeResume]) =>
         activeResume?.id
           ? this.#timelineEventService.getAllByResume({resumeId: activeResume.id}).pipe(
-            map(timelineEvents => TimelineEventActions.loaded({timelineEvents})),
-            catchError(() => of(TimelineEventActions.failed()))
+            map(timelineEvents => TimelineEventActions.loadingSuccessful({timelineEvents})),
+            catchError(() => of(TimelineEventActions.loadingFailed()))
           )
-          : of(TimelineEventActions.failed())
+          : of(TimelineEventActions.loadingFailed())
       )
     )
   );
 
   triggerTimelineEventLoading$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(ResumeActions.loaded),
-      switchMap(() => of(TimelineEventActions.triggered()))
+      ofType(ResumeActions.loadingSuccessful),
+      switchMap(() => of(TimelineEventActions.loadingTriggered()))
     )
   );
 }

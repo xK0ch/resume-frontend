@@ -33,25 +33,25 @@ describe('ResumeEffects', () => {
     resumesService = TestBed.inject(ResumesService) as jest.Mocked<ResumesService>;
   });
 
-  it('should dispatch "failed" action on error', (done) => {
+  it('should dispatch "loadingFailed" action on error', (done) => {
     resumesService.getAll.mockImplementationOnce(() => throwError(() => new Error('Failed to load resumes')));
 
-    actions$ = of(ResumeActions.triggered());
+    actions$ = of(ResumeActions.loadingTriggered());
 
     effects.loadResumes$.subscribe((action) => {
-      expect(action.type).toEqual(ResumeActions.failed.type);
+      expect(action.type).toEqual(ResumeActions.loadingFailed.type);
       expect(resumesService.getAll).toHaveBeenCalledTimes(1);
       done();
     });
   });
 
-  it('should dispatch "loaded" action with resumes on success', (done) => {
+  it('should dispatch "loadingSuccessful" action with resumes on success', (done) => {
     resumesService.getAll.mockReturnValue(of(MOCK_RESUMES));
 
-    actions$ = of(ResumeActions.triggered());
+    actions$ = of(ResumeActions.loadingTriggered());
 
     effects.loadResumes$.subscribe((action) => {
-      expect(action).toEqual(ResumeActions.loaded({resumes: MOCK_RESUMES}));
+      expect(action).toEqual(ResumeActions.loadingSuccessful({resumes: MOCK_RESUMES}));
       expect(resumesService.getAll).toHaveBeenCalledTimes(1);
       done();
     });

@@ -29,7 +29,7 @@
     "@ng-icons/ionicons": "29.10.0",
     "@ngrx/component": "18.1.1",
     "@ngrx/effects": "18.1.1",
-    "@ngrx/operators": "18.1.1",
+    "@ngrx/router-store": "18.1.1",
     "@ngrx/store": "18.1.1",
     "ng-openapi-gen": "0.52.0",
     "rxjs": "7.8.1",

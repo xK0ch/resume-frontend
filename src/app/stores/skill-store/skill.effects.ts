@@ -11,31 +11,31 @@ import {ResumeActions} from "../resume-store/resume.actions";
 @Injectable()
 export class SkillEffects {
 
-  readonly #actions$ = inject(Actions);
   readonly #store = inject(Store);
+  readonly #actions$ = inject(Actions);
   readonly #skillService = inject(SkillsService);
 
   readonly activeResume$ = this.#store.select(selectActiveResume);
 
   loadSkills$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(SkillActions.triggered),
+      ofType(SkillActions.loadingTriggered),
       withLatestFrom(this.activeResume$),
       exhaustMap(([, activeResume]) =>
         activeResume?.id
           ? this.#skillService.getAllByResume1({resumeId: activeResume.id}).pipe(
-            map(skills => SkillActions.loaded({skills})),
-            catchError(() => of(SkillActions.failed()))
+            map(skills => SkillActions.loadingSuccessful({skills})),
+            catchError(() => of(SkillActions.loadingFailed()))
           )
-          : of(SkillActions.failed())
+          : of(SkillActions.loadingFailed())
       )
     )
   );
 
   triggerSkillLoading$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(ResumeActions.loaded),
-      switchMap(() => of(SkillActions.triggered()))
+      ofType(ResumeActions.loadingSuccessful),
+      switchMap(() => of(SkillActions.loadingTriggered()))
     )
   );
 }

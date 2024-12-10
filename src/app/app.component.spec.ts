@@ -2,7 +2,6 @@ import {TestBed} from '@angular/core/testing';
 import {AppComponent} from './app.component';
 import {provideRouter} from "@angular/router";
 import {getTranslocoModule} from "./transloco-testing.module";
-import {provideMockStore} from "@ngrx/store/testing";
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -13,7 +12,6 @@ describe('AppComponent', () => {
       ],
       providers: [
         provideRouter([]),
-        provideMockStore({})
       ],
     }).compileComponents();
   });

@@ -13,11 +13,11 @@ export class ResumeEffects {
 
   loadResumes$ = createEffect(() =>
     this.#actions$.pipe(
-      ofType(ResumeActions.triggered),
+      ofType(ResumeActions.loadingTriggered),
       exhaustMap(() => this.#resumeService.getAll()
         .pipe(
-          map(resumes => ResumeActions.loaded({resumes})),
-          catchError(() => of(ResumeActions.failed))
+          map(resumes => ResumeActions.loadingSuccessful({resumes})),
+          catchError(() => of(ResumeActions.loadingFailed))
         )
       )
     )

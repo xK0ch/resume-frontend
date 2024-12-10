@@ -13,11 +13,5 @@ import {TimelineEventActions} from "./stores/timeline-event-store/timeline-event
   imports: [RouterOutlet, NavigationBarComponent],
   templateUrl: './app.component.html',
 })
-export class AppComponent implements OnInit {
-
-  #store = inject(Store);
-
-  ngOnInit(): void {
-    this.#store.dispatch(ResumeActions.triggered());
-  }
+export class AppComponent {
 }

@@ -16,16 +16,16 @@ export const resumeFeature = createFeature({
   name: 'resume',
   reducer: createReducer(
     initialState,
-    on(ResumeActions.triggered, (state) => ({
+    on(ResumeActions.loadingTriggered, (state) => ({
       ...state,
       isLoading: true,
     })),
-    on(ResumeActions.loaded, (state, {resumes}) => ({
+    on(ResumeActions.loadingSuccessful, (state, {resumes}) => ({
       ...state,
       resumes,
       isLoading: false,
     })),
-    on(ResumeActions.failed, (state) => ({
+    on(ResumeActions.loadingFailed, (state) => ({
       ...state,
       isLoading: false,
     }))
@@ -43,8 +43,6 @@ export const resumeFeature = createFeature({
 export const {
   name,
   reducer,
-  selectResumeState,
-  selectResumes,
   selectIsLoading,
   selectActiveResume,
 } = resumeFeature;

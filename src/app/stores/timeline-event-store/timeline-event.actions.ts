@@ -1,10 +1,11 @@
-import {createAction, props} from "@ngrx/store";
+import {createActionGroup, emptyProps, props} from "@ngrx/store";
 import {TimelineEventView} from "../../../../api/src/models/timeline-event-view";
 
-export const TimelineEventActions = {
-  triggered: createAction('[TimelineEvent] Loading timeline events triggered'),
-  loaded: createAction('[TimelineEvent] Timeline events loaded successfully', props<{
-    timelineEvents: TimelineEventView[]
-  }>()),
-  failed: createAction('[TimelineEvent] Loading timeline events failed'),
-}
+export const TimelineEventActions = createActionGroup({
+  source: 'TimelineEvent',
+  events: {
+    loadingTriggered: emptyProps(),
+    loadingSuccessful: props<{ timelineEvents: TimelineEventView[] }>(),
+    loadingFailed: emptyProps(),
+  },
+});

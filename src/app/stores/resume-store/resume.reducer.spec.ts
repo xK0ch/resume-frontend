@@ -7,22 +7,22 @@ describe('Resume Reducer', () => {
     expect(reducer(undefined, {type: 'unknown'})).toEqual(initialState);
   });
 
-  it('should set isLoading to true when "triggered" action is dispatched', () => {
-    const action = ResumeActions.triggered();
+  it('should set isLoading to true when "loadingTriggered" action is dispatched', () => {
+    const action = ResumeActions.loadingTriggered();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(true);
   });
 
-  it('should update resumes and set isLoading to false when "loaded" action is dispatched', () => {
-    const action = ResumeActions.loaded({resumes: MOCK_RESUMES});
+  it('should update resumes and set isLoading to false when "loadingSuccessful" action is dispatched', () => {
+    const action = ResumeActions.loadingSuccessful({resumes: MOCK_RESUMES});
     const state = reducer(initialState, action);
 
     expect(state.resumes).toEqual(MOCK_RESUMES);
     expect(state.isLoading).toBe(false);
   });
 
-  it('should set isLoading to false when "failed" action is dispatched', () => {
-    const action = ResumeActions.failed();
+  it('should set isLoading to false when "loadingFailed" action is dispatched', () => {
+    const action = ResumeActions.loadingFailed();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(false);
   });

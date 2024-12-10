@@ -40,54 +40,54 @@ describe('TimelineEventEffects', () => {
     selectActiveResumeMock = store.overrideSelector(selectActiveResume, MOCK_RESUMES[0]);
   });
 
-  it('should dispatch "loaded" action on successful timeline event retrieval', (done) => {
+  it('should dispatch "loadingSuccessful" action on successful timeline event retrieval', (done) => {
     selectActiveResumeMock.setResult(MOCK_RESUMES[0]);
     store.refreshState();
 
     timelineEventsService.getAllByResume.mockReturnValue(of(MOCK_TIMELINE_EVENTS));
 
-    actions$ = of(TimelineEventActions.triggered());
+    actions$ = of(TimelineEventActions.loadingTriggered());
 
     effects.loadTimelineEvents$.subscribe((action) => {
-      expect(action).toEqual(TimelineEventActions.loaded({timelineEvents: MOCK_TIMELINE_EVENTS}));
+      expect(action).toEqual(TimelineEventActions.loadingSuccessful({timelineEvents: MOCK_TIMELINE_EVENTS}));
       expect(timelineEventsService.getAllByResume).toHaveBeenCalledWith({resumeId: MOCK_RESUMES[0].id});
       done();
     });
   });
 
-  it('should dispatch "failed" action when activeResume is undefined', (done) => {
+  it('should dispatch "loadingFailed" action when activeResume is undefined', (done) => {
     selectActiveResumeMock.setResult(undefined);
     store.refreshState();
 
-    actions$ = of(TimelineEventActions.triggered());
+    actions$ = of(TimelineEventActions.loadingTriggered());
 
     effects.loadTimelineEvents$.subscribe((action) => {
-      expect(action).toEqual(TimelineEventActions.failed());
+      expect(action).toEqual(TimelineEventActions.loadingFailed());
       expect(timelineEventsService.getAllByResume).not.toHaveBeenCalled();
       done();
     });
   });
 
-  it('should dispatch "failed" action on service error', (done) => {
+  it('should dispatch "loadingFailed" action on service error', (done) => {
     selectActiveResumeMock.setResult(MOCK_RESUMES[0]);
     store.refreshState();
 
     timelineEventsService.getAllByResume.mockReturnValue(throwError(() => new Error('Failed to load timeline events')));
 
-    actions$ = of(TimelineEventActions.triggered());
+    actions$ = of(TimelineEventActions.loadingTriggered());
 
     effects.loadTimelineEvents$.subscribe((action) => {
-      expect(action).toEqual(TimelineEventActions.failed());
+      expect(action).toEqual(TimelineEventActions.loadingFailed());
       expect(timelineEventsService.getAllByResume).toHaveBeenCalledWith({resumeId: MOCK_RESUMES[0].id});
       done();
     });
   });
 
-  it('should dispatch "triggered" action on resume loaded', (done) => {
-    actions$ = of(ResumeActions.loaded({resumes: MOCK_RESUMES}));
+  it('should dispatch "loadingTriggered" action on resume loaded', (done) => {
+    actions$ = of(ResumeActions.loadingSuccessful({resumes: MOCK_RESUMES}));
 
     effects.triggerTimelineEventLoading$.subscribe((action) => {
-      expect(action).toEqual(TimelineEventActions.triggered());
+      expect(action).toEqual(TimelineEventActions.loadingTriggered());
       done();
     });
   });

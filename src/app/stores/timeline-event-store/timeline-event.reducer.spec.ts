@@ -7,22 +7,22 @@ describe('TimelineEvent reducer', () => {
     expect(reducer(undefined, {type: 'unknown'})).toEqual(initialState);
   });
 
-  it('should set isLoading to true when "triggered" action is dispatched', () => {
-    const action = TimelineEventActions.triggered();
+  it('should set isLoading to true when "loadingTriggered" action is dispatched', () => {
+    const action = TimelineEventActions.loadingTriggered();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(true);
   });
 
-  it('should update timeline events and set isLoading to false when "loaded" action is dispatched', () => {
-    const action = TimelineEventActions.loaded({timelineEvents: MOCK_TIMELINE_EVENTS});
+  it('should update timeline events and set isLoading to false when "loadingSuccessful" action is dispatched', () => {
+    const action = TimelineEventActions.loadingSuccessful({timelineEvents: MOCK_TIMELINE_EVENTS});
     const state = reducer(initialState, action);
 
     expect(state.timelineEvents).toEqual(MOCK_TIMELINE_EVENTS);
     expect(state.isLoading).toBe(false);
   });
 
-  it('should set isLoading to false when "failed" action is dispatched', () => {
-    const action = TimelineEventActions.failed();
+  it('should set isLoading to false when "loadingFailed" action is dispatched', () => {
+    const action = TimelineEventActions.loadingFailed();
     const state = reducer(initialState, action);
     expect(state.isLoading).toBe(false);
   });

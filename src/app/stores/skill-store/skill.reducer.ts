@@ -16,16 +16,16 @@ export const skillFeature = createFeature({
   name: 'skill',
   reducer: createReducer(
     initialState,
-    on(SkillActions.triggered, (state) => ({
+    on(SkillActions.loadingTriggered, (state) => ({
       ...state,
       isLoading: true,
     })),
-    on(SkillActions.loaded, (state, {skills}) => ({
+    on(SkillActions.loadingSuccessful, (state, {skills}) => ({
       ...state,
       skills,
       isLoading: false,
     })),
-    on(SkillActions.failed, (state) => ({
+    on(SkillActions.loadingFailed, (state) => ({
       ...state,
       isLoading: false,
     }))
@@ -35,7 +35,6 @@ export const skillFeature = createFeature({
 export const {
   name,
   reducer,
-  selectSkillState,
   selectSkills,
   selectIsLoading,
 } = skillFeature;

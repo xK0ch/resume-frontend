@@ -40,54 +40,54 @@ describe('SkillEffects', () => {
     selectActiveResumeMock = store.overrideSelector(selectActiveResume, MOCK_RESUMES[0]);
   });
 
-  it('should dispatch "loaded" action on successful skill retrieval', (done) => {
+  it('should dispatch "loadingSuccessful" action on successful skill retrieval', (done) => {
     selectActiveResumeMock.setResult(MOCK_RESUMES[0]);
     store.refreshState();
 
     skillsService.getAllByResume1.mockReturnValue(of(MOCK_SKILLS));
 
-    actions$ = of(SkillActions.triggered());
+    actions$ = of(SkillActions.loadingTriggered());
 
     effects.loadSkills$.subscribe((action) => {
-      expect(action).toEqual(SkillActions.loaded({skills: MOCK_SKILLS}));
+      expect(action).toEqual(SkillActions.loadingSuccessful({skills: MOCK_SKILLS}));
       expect(skillsService.getAllByResume1).toHaveBeenCalledWith({resumeId: MOCK_RESUMES[0].id});
       done();
     });
   });
 
-  it('should dispatch "failed" action when activeResume is undefined', (done) => {
+  it('should dispatch "loadingFailed" action when activeResume is undefined', (done) => {
     selectActiveResumeMock.setResult(undefined);
     store.refreshState();
 
-    actions$ = of(SkillActions.triggered());
+    actions$ = of(SkillActions.loadingTriggered());
 
     effects.loadSkills$.subscribe((action) => {
-      expect(action).toEqual(SkillActions.failed());
+      expect(action).toEqual(SkillActions.loadingFailed());
       expect(skillsService.getAllByResume1).not.toHaveBeenCalled();
       done();
     });
   });
 
-  it('should dispatch "failed" action on service error', (done) => {
+  it('should dispatch "loadingFailed" action on service error', (done) => {
     selectActiveResumeMock.setResult(MOCK_RESUMES[0]);
     store.refreshState();
 
     skillsService.getAllByResume1.mockReturnValue(throwError(() => new Error('Failed to load skills')));
 
-    actions$ = of(SkillActions.triggered());
+    actions$ = of(SkillActions.loadingTriggered());
 
     effects.loadSkills$.subscribe((action) => {
-      expect(action).toEqual(SkillActions.failed());
+      expect(action).toEqual(SkillActions.loadingFailed());
       expect(skillsService.getAllByResume1).toHaveBeenCalledWith({resumeId: MOCK_RESUMES[0].id});
       done();
     });
   });
 
-  it('should dispatch "triggered" action on resume loaded', (done) => {
-    actions$ = of(ResumeActions.loaded({resumes: MOCK_RESUMES}));
+  it('should dispatch "loadingTriggered" action on resume loaded', (done) => {
+    actions$ = of(ResumeActions.loadingSuccessful({resumes: MOCK_RESUMES}));
 
     effects.triggerSkillLoading$.subscribe((action) => {
-      expect(action).toEqual(SkillActions.triggered());
+      expect(action).toEqual(SkillActions.loadingTriggered());
       done();
     });
   });
