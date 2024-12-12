@@ -13,6 +13,7 @@
     "mobile": "Mobilfunk",
     "phone": "Festnetz"
   },
+  "pageNotFound": "Seite nicht gefunden",
   "skills": {
     "filter": {
       "noResults": "Es konnten keine Ergebnisse für \"{{input}}\" gefunden werden",
@@ -43,8 +44,5 @@
       "level": "Fähigkeitsniveau",
       "skill": "Fähigkeit"
     }
-  },
-  "timeline": {
-    "construction": "Diese Seite befindet sich noch im Aufbau"
   }
 }

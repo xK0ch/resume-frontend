@@ -13,6 +13,7 @@
     "mobile": "Mobile",
     "phone": "Phone"
   },
+  "pageNotFound": "Page not found",
   "skills": {
     "filter": {
       "noResults": "No results could be found for \"{{input}}\"",
@@ -43,8 +44,5 @@
       "level": "Skill level",
       "skill": "Skill"
     }
-  },
-  "timeline": {
-    "construction": "This page is under construction"
   }
 }
