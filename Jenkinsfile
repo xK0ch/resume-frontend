@@ -5,10 +5,6 @@ pipeline {
     nodejs '22.12.0'
   }
 
-  triggers {
-    pollSCM('H * * * *')
-  }
-
   stages {
     stage('Build') {
       steps {
